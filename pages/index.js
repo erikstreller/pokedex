@@ -24,8 +24,10 @@ export default function Home() {
           <p className='mb-16 max-w-2xl text-3xl'>
             Did you know that the first Pokémon ever designed was{' '}
             <Link href='/'>
-              <a className='hover:underline hover:decoration-leaf hover:underline-offset-2'>
-                <Accent gradient='text-leaf'>Rhydon</Accent>
+              <a className='decoration-gras-colorful hover:underline hover:underline-offset-2'>
+                <Accent gradient='from-gras-colorful to-water-colorful '>
+                  Rhydon
+                </Accent>
               </a>
             </Link>
             ?
@@ -35,7 +37,7 @@ export default function Home() {
               <div
                 className={clsx(
                   'absolute -inset-1 rounded-lg',
-                  'bg-gradient-to-r from-fire to-water opacity-75 blur',
+                  'bg-gradient-to-r from-fighting-colorful to-water-colorful opacity-75 blur',
                   'transition duration-700 group-hover:opacity-100 group-hover:duration-200'
                 )}
               />
