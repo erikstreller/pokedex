@@ -1,4 +1,5 @@
 import { GetStaticProps } from 'next'
+import Card from '../components/Card'
 import typeColors from '../components/constants/colors'
 import Label from '../components/Label'
 import Seo from '../components/Seo'
@@ -12,17 +13,12 @@ export default function Library({ pokemons }) {
           <div className='text-4xl font-bold'>Pokémon Data</div>
           <div className='my-4 flex flex-wrap gap-3'>
             {typeColors.map((type, index) => (
-              <div key={index}>
-                <Label type={type} />
-              </div>
+              <Label key={index} type={type} />
             ))}
           </div>
-          <div>
+          <div className='flex flex-wrap gap-6'>
             {pokemons.map((pokemon, index) => (
-              <div key={index}>
-                <p>{pokemon.name}</p>
-                <p>{pokemon.image}</p>
-              </div>
+              <Card key={index} image={pokemon.image} name={pokemon.name} />
             ))}
           </div>
         </div>

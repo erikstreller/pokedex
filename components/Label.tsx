@@ -1,4 +1,5 @@
 import clsx from 'clsx'
+import Capitalize from './functions/Capitalize'
 import twTypeColors from './functions/twTypeColors'
 
 export type LabelProps = {
@@ -6,10 +7,6 @@ export type LabelProps = {
 }
 
 export default function Label({ type }: LabelProps) {
-  const capitalize = (string: string) => {
-    return string[0].toUpperCase() + string.slice(1)
-  }
-
   return (
     <div
       className={clsx(
@@ -17,7 +14,7 @@ export default function Label({ type }: LabelProps) {
         twTypeColors(type)
       )}
     >
-      {capitalize(type)}
+      {Capitalize(type)}
     </div>
   )
 }
