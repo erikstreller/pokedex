@@ -1,11 +1,14 @@
 import clsx from 'clsx'
 import Image from 'next/image'
 import Link from 'next/link'
+import { useState } from 'react'
 import background from '../assets/landing.jpg'
 import Accent from '../components/Accent'
 import Seo from '../components/Seo'
 
 export default function Home() {
+  const [loading, setLoading] = useState(false)
+
   return (
     <>
       <Seo />
@@ -41,15 +44,17 @@ export default function Home() {
                   'transition duration-700 group-hover:opacity-100 group-hover:duration-200'
                 )}
               />
-              <Link href='/'>
+              <Link href='/library'>
                 <a
                   className={clsx(
                     'inline-flex scale-100 rounded-lg border',
                     'border-gray-600 bg-black px-4 py-2 text-xl shadow-sm',
                     'transition duration-100 hover:scale-[1.03] active:scale-[0.97]'
                   )}
+                  onClick={(e) => setLoading(true)}
                 >
-                  Explore
+                  {!loading && 'Explore'}
+                  {loading && 'Loading...'}
                 </a>
               </Link>
             </div>
