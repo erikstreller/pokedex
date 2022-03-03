@@ -1,19 +1,32 @@
 import { GetStaticProps } from 'next'
+import typeColors from '../components/constants/colors'
+import Label from '../components/Label'
+import Seo from '../components/Seo'
 
 export default function Library({ pokemons }) {
   return (
     <>
-      <div className='text-4xl font-bold'>Pokémon Data</div>
-      <div>
-        {pokemons.map((pokemon, index) => (
-          <div key={index}>
-            <p>{pokemon.name}</p>
-            <p>{pokemon.image}</p>
-            {/* <p>{pokemon.types}</p>
-            <p>{pokemon.stats}</p> */}
+      <Seo title='Library' />
+      <main className='min-h-screen w-full bg-black'>
+        <div className='z-10 mx-auto w-[90%] max-w-[1100px] text-white'>
+          <div className='text-4xl font-bold'>Pokémon Data</div>
+          <div className='my-4 flex flex-wrap gap-3'>
+            {typeColors.map((type, index) => (
+              <div key={index}>
+                <Label type={type} />
+              </div>
+            ))}
           </div>
-        ))}
-      </div>
+          <div>
+            {pokemons.map((pokemon, index) => (
+              <div key={index}>
+                <p>{pokemon.name}</p>
+                <p>{pokemon.image}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </main>
     </>
   )
 }

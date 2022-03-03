@@ -1,9 +1,9 @@
-import clsx from 'clsx';
-import Image from 'next/image';
-import Link from 'next/link';
-import background from '../assets/landing.jpg';
-import Accent from '../components/Accent';
-import Seo from '../components/Seo';
+import clsx from 'clsx'
+import Image from 'next/image'
+import Link from 'next/link'
+import background from '../assets/landing.jpg'
+import Accent from '../components/Accent'
+import Seo from '../components/Seo'
 
 export default function Home() {
   return (
@@ -24,8 +24,8 @@ export default function Home() {
           <p className='mb-16 max-w-2xl text-3xl'>
             Did you know that the first Pokémon ever designed was{' '}
             <Link href='/'>
-              <a className='decoration-gras-colorful hover:underline hover:underline-offset-2'>
-                <Accent gradient='from-gras-colorful to-water-colorful '>
+              <a className='decoration-grass-colorful hover:underline hover:underline-offset-2'>
+                <Accent gradient='from-grass-colorful to-water-colorful '>
                   Rhydon
                 </Accent>
               </a>
@@ -57,5 +57,5 @@ export default function Home() {
         </div>
       </main>
     </>
-  );
+  )
 }

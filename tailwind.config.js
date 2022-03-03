@@ -1,7 +1,10 @@
-const { fontFamily } = require('tailwindcss/defaultTheme');
+const { fontFamily } = require('tailwindcss/defaultTheme')
 
 module.exports = {
-  content: ['./pages/**/*.tsx', './components/**/*.tsx'],
+  content: [
+    './pages/**/*.{js,jsx,ts,tsx}',
+    './components/**/*.{js,jsx,ts,tsx}'
+  ],
   theme: {
     extend: {
       fontFamily: {
@@ -12,9 +15,9 @@ module.exports = {
         fire: '#EE8130',
         water: '#6390F0',
         'water-colorful': '#3498DB',
-        electro: '#F7D02C',
-        gras: '#7AC74C',
-        'gras-colorful': '#00e887',
+        electric: '#F7D02C',
+        grass: '#7AC74C',
+        'grass-colorful': '#00e887',
         ice: '#96D9D6',
         fighting: '#C22E28',
         'fighting-colorful': '#C70039',
@@ -34,4 +37,4 @@ module.exports = {
     }
   },
   plugins: []
-};
+}
