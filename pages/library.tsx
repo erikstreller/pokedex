@@ -1,4 +1,5 @@
 import { GetStaticProps } from 'next'
+import Accent from '../components/Accent'
 import Card from '../components/Card'
 import typeColors from '../components/constants/colors'
 import Label from '../components/Label'
@@ -10,8 +11,13 @@ export default function Library({ pokemons }) {
       <Seo title='Library' />
       <main className='min-h-screen w-full bg-black'>
         <div className='z-10 mx-auto w-[90%] max-w-[1100px] text-white'>
-          <div className='text-4xl font-bold'>Pokémon Data</div>
-          <div className='my-4 flex flex-wrap gap-3'>
+          <div className='pt-10 pb-4 text-4xl font-bold'>
+            In the original games there where{' '}
+            <Accent gradient='from-psychic'>151 </Accent>
+            Pokémon.
+            {/* Mew: see notes under mew.md */}
+          </div>
+          <div className='my-4 flex flex-wrap gap-3 pb-5'>
             {typeColors.map((type, index) => (
               <Label key={index} type={type} />
             ))}
