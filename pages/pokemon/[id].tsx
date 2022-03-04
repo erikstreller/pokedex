@@ -1,7 +1,12 @@
+import clsx from 'clsx'
 import Image from 'next/image'
 import { GetStaticPaths } from 'next/types'
 import background from '../../assets/landing.jpg'
 import Capitalize from '../../components/functions/Capitalize'
+import {
+  twFromTypeColors,
+  twToTypeColors
+} from '../../components/functions/twGradientTypeColors'
 import Label from '../../components/Label'
 import Seo from '../../components/Seo'
 import { getAllPokemonIds } from '../library'
@@ -58,6 +63,14 @@ export default function PokemonSide({
     .replace('\f', ' ')
     .replace('POKéMON', 'Pokémon')
 
+  function gradientType(types, type) {
+    if (type === undefined) {
+      return types[0]
+    } else {
+      return type
+    }
+  }
+
   return (
     <>
       <Seo />
@@ -84,7 +97,11 @@ export default function PokemonSide({
           </div>
         </div>
         <div
-          className='absolute bottom-0 h-screen w-full bg-pink-700'
+          className={clsx(
+            'absolute bottom-0 h-screen w-full bg-gradient-to-b',
+            twFromTypeColors(gradientType(types, types[0])),
+            twToTypeColors(gradientType(types, types[1]))
+          )}
           style={{
             clipPath: 'polygon(59.8% 0, 100% 0%, 100% 100%, 39.8% 100%)'
           }}

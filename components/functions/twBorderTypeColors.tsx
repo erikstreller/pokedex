@@ -1,5 +1,5 @@
 // Tailwind does not support dynamic constructed class names
-export default function twTypeColors(type: string) {
+export default function twBorderTypeColors(type: string) {
   if (type === 'normal') {
     return 'border-normal'
   }
