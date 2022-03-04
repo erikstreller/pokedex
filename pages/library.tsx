@@ -24,7 +24,12 @@ export default function Library({ pokemons }) {
           </div>
           <div className='flex flex-wrap gap-6'>
             {pokemons.map((pokemon, index) => (
-              <Card key={index} image={pokemon.image} name={pokemon.name} />
+              <Card
+                key={index}
+                image={pokemon.image}
+                name={pokemon.name}
+                id={index + 1}
+              />
             ))}
           </div>
         </div>
@@ -66,4 +71,18 @@ export const getStaticProps: GetStaticProps = async (context) => {
       pokemons
     }
   }
+}
+
+export function getAllPokemonIds() {
+  const pokemon = Array.from({ length: 151 }, (value, index) =>
+    (index + 1).toString()
+  )
+
+  return pokemon.map((index) => {
+    return {
+      params: {
+        id: index
+      }
+    }
+  })
 }
