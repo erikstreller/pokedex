@@ -31,7 +31,12 @@ export async function getStaticProps({ params }) {
   )
   const { flavor_text_entries } = await res2.json()
 
-  const description = flavor_text_entries[0].flavor_text
+  let description = ''
+  flavor_text_entries.map((flavor) => {
+    if (flavor.version.name === 'red') {
+      description = description.concat(flavor.flavor_text)
+    }
+  })
 
   return {
     props: {
@@ -85,13 +90,13 @@ export default function PokemonSide({
           objectPosition='center'
         />
         <div className='relative z-10 mx-auto flex h-full w-[90%] max-w-[1100px] flex-col items-start justify-center text-white'>
-          <p className='text-5xl font-bold '>{Capitalize(name)}</p>
+          <p className='text-5xl font-bold'>{Capitalize(name)}</p>
           <div className='my-4 flex flex-wrap gap-3'>
             {types.map((type, index) => (
               <Label key={index} type={type} />
             ))}
           </div>
-          <div className='mt-6 max-w-xl text-2xl'>{modifiedDescription}</div>
+          <div className='mt-4 max-w-xl text-2xl'>{modifiedDescription}</div>
           <div className='absolute -right-[5%] bottom-[5%]'>
             <Image src={image} width={500} height={500} alt={name} />
           </div>
