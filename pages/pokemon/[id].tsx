@@ -96,7 +96,9 @@ export default function PokemonSide({
               <Label key={index} type={type} />
             ))}
           </div>
-          <div className='mt-4 max-w-xl text-2xl'>{modifiedDescription}</div>
+          <div className='mt-4 mb-10 max-w-[534px] text-2xl'>
+            {modifiedDescription}
+          </div>
           <div className='absolute -right-[5%] bottom-[5%]'>
             <Image src={image} width={500} height={500} alt={name} />
           </div>
@@ -108,12 +110,12 @@ export default function PokemonSide({
             twToTypeColors(gradientType(types, types[1]))
           )}
           style={{
-            clipPath: 'polygon(59.8% 0, 100% 0%, 100% 100%, 39.8% 100%)'
+            clipPath: 'polygon(61.8% 0, 100% 0%, 100% 100%, 41.8% 100%)'
           }}
         ></div>
         <div
           className='absolute bottom-0 h-screen w-full bg-slate-900'
-          style={{ clipPath: 'polygon(60% 0, 100% 0%, 100% 100%, 40% 100%)' }}
+          style={{ clipPath: 'polygon(62% 0, 100% 0%, 100% 100%, 42% 100%)' }}
         ></div>
         {/* {stats.map((stat, index) => (
             <p key={index}>
