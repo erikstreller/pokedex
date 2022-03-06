@@ -102,7 +102,7 @@ export default function PokemonSide({
 
   return (
     <>
-      <Seo />
+      <Seo title={Capitalize(name)} />
       <main className='relative h-screen w-full bg-black'>
         <Image
           priority
