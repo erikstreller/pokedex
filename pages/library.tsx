@@ -7,7 +7,7 @@ import Label from '../components/Label'
 import Seo from '../components/Seo'
 
 export default function Library({ pokemons }) {
-  const [filteredType, setfilteredType] = useState([])
+  const [filteredType, setfilteredType] = useState([...pokemons])
   const [activeType, setActiveType] = useState('All')
 
   useEffect(() => {
