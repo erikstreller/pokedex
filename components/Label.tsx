@@ -1,20 +1,22 @@
-import clsx from 'clsx'
-import Capitalize from './functions/Capitalize'
-import twBorderTypeColors from './functions/twBorderTypeColors'
+import { Dispatch, SetStateAction } from 'react'
+import BasicLabel from './BasicLabel'
 
 export type LabelProps = {
   type: string
+  setActiveType?: Dispatch<SetStateAction<string>>
+  filter?: boolean
 }
 
-export default function Label({ type }: LabelProps) {
+export default function Label({ type, setActiveType, filter }: LabelProps) {
+  if (!filter) {
+    return <BasicLabel type={type} />
+  }
+
   return (
-    <div
-      className={clsx(
-        'flex justify-center rounded-full border-2 py-1 px-3 align-middle text-sm transition-all duration-200 ease-in-out',
-        twBorderTypeColors(type)
-      )}
-    >
-      {Capitalize(type)}
-    </div>
+    <BasicLabel
+      type={type}
+      className='cursor-pointer'
+      onClick={(e) => setActiveType(type)}
+    />
   )
 }

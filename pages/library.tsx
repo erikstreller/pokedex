@@ -1,4 +1,5 @@
 import { GetStaticProps } from 'next'
+import { useEffect, useState } from 'react'
 import Accent from '../components/Accent'
 import Card from '../components/Card'
 import typeColors from '../components/constants/colors'
@@ -6,6 +7,22 @@ import Label from '../components/Label'
 import Seo from '../components/Seo'
 
 export default function Library({ pokemons }) {
+  const [filteredType, setfilteredType] = useState([])
+  const [activeType, setActiveType] = useState('')
+
+  useEffect(() => {
+    if (activeType === 'All') {
+      setfilteredType(pokemons)
+      return
+    }
+
+    const filtered = pokemons.filter((pokemon) =>
+      pokemon.types[0].includes(activeType)
+    )
+
+    setfilteredType(filtered)
+  }, [activeType])
+
   return (
     <>
       <Seo title='Library' />
@@ -18,12 +35,18 @@ export default function Library({ pokemons }) {
             {/* Mew: see notes under mew.md */}
           </div>
           <div className='my-4 flex flex-wrap gap-3 pb-5'>
+            <Label type='All' setActiveType={setActiveType} filter />
             {typeColors.map((type, index) => (
-              <Label key={index} type={type} />
+              <Label
+                key={index}
+                type={type}
+                setActiveType={setActiveType}
+                filter
+              />
             ))}
           </div>
           <div className='flex flex-wrap gap-6'>
-            {pokemons.map((pokemon, index) => (
+            {filteredType.map((pokemon, index) => (
               <Card
                 key={index}
                 image={pokemon.image}
