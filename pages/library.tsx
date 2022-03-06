@@ -46,12 +46,12 @@ export default function Library({ pokemons }) {
             ))}
           </div>
           <div className='flex flex-wrap gap-6'>
-            {filteredType.map((pokemon, index) => (
+            {filteredType.map((pokemon) => (
               <Card
-                key={index}
+                key={pokemon.id}
                 image={pokemon.image}
                 name={pokemon.name}
-                id={index + 1}
+                id={pokemon.id}
               />
             ))}
           </div>
@@ -81,6 +81,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
 
     pokemons.push({
       name: pokemon.name,
+      id: pokemon.id,
       image: `https://assets.pokemon.com/assets/cms2/img/pokedex/full/${paddedIndex}.png`,
       types: allTypes,
       stats: allStats
