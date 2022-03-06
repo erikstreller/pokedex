@@ -70,6 +70,26 @@ export default function PokemonSide({
   const modifiedDescription = description
     .replace('\f', ' ')
     .replace('POKéMON', 'Pokémon')
+    .replace('POKé', 'Poké')
+    .replace('MAGIKARP', 'Magikarp')
+    .replace('PIDGEY', 'Pidgey')
+    .replace('SPEAROW', 'Spearow')
+    .replace('DIGLETT', 'Diglett')
+    .replace('TELEPORT', 'Teleport')
+    .replace('POISONPOWDER', 'Poisonpowder')
+    .replace('ACID', 'Acid')
+    .replace('SHELLDER', 'Shellder')
+    .replace(`SLOWPOKE's`, `Slowpoke's`)
+    .replace('THUNDER', 'Thunder')
+    .replace('WAVE', 'Wave')
+    .replace('MAGNEMITEs', 'Magnemites')
+    .replace('HYPNOSIS', 'Hypnosis')
+    .replace('CONFUSION', 'Confusion')
+    .replace('BALL', 'Ball')
+    .replace('EXEGGCUTE', 'Exeggcute')
+    .replace('KOFFINGs', 'Koffings')
+    .replace('WEEZING', 'Weezing')
+    .replace('STONEs', 'Stones')
 
   function gradientType(types, type) {
     if (type === undefined) {
