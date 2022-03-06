@@ -2,6 +2,7 @@ import clsx from 'clsx'
 import Image from 'next/image'
 import { GetStaticPaths } from 'next/types'
 import background from '../../assets/landing.jpg'
+import BackLibrary from '../../components/BackLibrary'
 import Capitalize from '../../components/functions/Capitalize'
 import {
   twFromTypeColors,
@@ -126,6 +127,7 @@ export default function PokemonSide({
             <Image src={image} width={500} height={500} alt={name} />
           </div>
           <Navigate id={id} />
+          <BackLibrary />
         </div>
         <div
           className={clsx(
