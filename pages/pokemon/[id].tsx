@@ -8,6 +8,7 @@ import {
   twToTypeColors
 } from '../../components/functions/twGradientTypeColors'
 import Label from '../../components/Label'
+import Navigate from '../../components/Navigate'
 import Seo from '../../components/Seo'
 import { getAllPokemonIds } from '../library'
 
@@ -41,6 +42,7 @@ export async function getStaticProps({ params }) {
   return {
     props: {
       name: pokemon.name,
+      id: pokemon.id,
       image: `https://assets.pokemon.com/assets/cms2/img/pokedex/full/${paddedIndex}.png`,
       types,
       stats,
@@ -59,6 +61,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
 export default function PokemonSide({
   name,
+  id,
   image,
   types,
   stats,
@@ -102,6 +105,7 @@ export default function PokemonSide({
           <div className='absolute -right-[5%] bottom-[5%]'>
             <Image src={image} width={500} height={500} alt={name} />
           </div>
+          <Navigate id={id} />
         </div>
         <div
           className={clsx(
