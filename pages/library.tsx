@@ -8,7 +8,7 @@ import Seo from '../components/Seo'
 
 export default function Library({ pokemons }) {
   const [filteredType, setfilteredType] = useState([])
-  const [activeType, setActiveType] = useState('')
+  const [activeType, setActiveType] = useState('All')
 
   useEffect(() => {
     if (activeType === 'All') {
@@ -17,7 +17,7 @@ export default function Library({ pokemons }) {
     }
 
     const filtered = pokemons.filter((pokemon) =>
-      pokemon.types[0].includes(activeType)
+      pokemon.types.includes(activeType)
     )
 
     setfilteredType(filtered)
