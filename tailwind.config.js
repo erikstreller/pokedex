@@ -39,6 +39,9 @@ module.exports = {
         light: '#fefefe',
         link: '#58a6ff',
         divider: '#4b5563'
+      },
+      width: {
+        'overlay-image': 'clamp(250px, 40vw, 500px)'
       }
     }
   },

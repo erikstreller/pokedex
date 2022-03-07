@@ -1,7 +1,7 @@
 import clsx from 'clsx'
 import Image from 'next/image'
 import { GetStaticPaths } from 'next/types'
-import background from '../../assets/landing.jpg'
+import background from '../../assets/landing-branden-skeli.jpg'
 import BackLibrary from '../../components/BackLibrary'
 import Capitalize from '../../components/functions/Capitalize'
 import {
