@@ -18,3 +18,9 @@ a {
 * {
   box-sizing: border-box;
 }
+
+@layer components {
+  .layout {
+    @apply text-light z-10 mx-auto w-[90%] max-w-[1100px];
+  }
+}

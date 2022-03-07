@@ -34,7 +34,11 @@ module.exports = {
         dragon: '#6F35FC',
         dark: '#705746',
         steel: '#B7B7CE',
-        fairy: '#D685AD'
+        fairy: '#D685AD',
+        'dark-theme': '#111111',
+        light: '#fefefe',
+        link: '#58a6ff',
+        divider: '#4b5563'
       }
     }
   },

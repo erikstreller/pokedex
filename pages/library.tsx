@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react'
 import Accent from '../components/Accent'
 import Card from '../components/Card'
 import typeColors from '../components/constants/colors'
+import Footer from '../components/Footer'
 import Label from '../components/Label'
 import Seo from '../components/Seo'
 
@@ -25,10 +26,10 @@ export default function Library({ pokemons }) {
   }, [activeType])
 
   return (
-    <>
+    <div className='bg-dark-theme'>
       <Seo title='Library' />
-      <main className='min-h-screen w-full bg-black'>
-        <div className='z-10 mx-auto w-[90%] max-w-[1100px] text-white'>
+      <main className='min-h-screen w-full bg-dark-theme'>
+        <div className='layout'>
           <div className='pt-10 pb-4 text-4xl font-bold'>
             In the original games there where{' '}
             <Accent gradient='from-psychic'>151 </Accent>
@@ -52,7 +53,7 @@ export default function Library({ pokemons }) {
               />
             ))}
           </div>
-          <motion.div layout className='flex flex-wrap gap-6'>
+          <motion.div layout className='mb-10 flex flex-wrap gap-6'>
             <AnimatePresence>
               {filteredType.map((pokemon) => (
                 <Card
@@ -66,7 +67,8 @@ export default function Library({ pokemons }) {
           </motion.div>
         </div>
       </main>
-    </>
+      <Footer />
+    </div>
   )
 }
 
