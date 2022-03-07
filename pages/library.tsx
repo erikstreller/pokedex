@@ -1,3 +1,4 @@
+import { AnimatePresence, motion } from 'framer-motion'
 import { GetStaticProps } from 'next'
 import { useEffect, useState } from 'react'
 import Accent from '../components/Accent'
@@ -8,10 +9,10 @@ import Seo from '../components/Seo'
 
 export default function Library({ pokemons }) {
   const [filteredType, setfilteredType] = useState([...pokemons])
-  const [activeType, setActiveType] = useState('All')
+  const [activeType, setActiveType] = useState('all')
 
   useEffect(() => {
-    if (activeType === 'All') {
+    if (activeType === 'all') {
       setfilteredType(pokemons)
       return
     }
@@ -35,26 +36,34 @@ export default function Library({ pokemons }) {
             {/* Mew: see notes under mew.md */}
           </div>
           <div className='my-4 flex flex-wrap gap-3 pb-5'>
-            <Label type='All' setActiveType={setActiveType} filter />
+            <Label
+              type='all'
+              setActiveType={setActiveType}
+              filter
+              activeType={activeType}
+            />
             {typeColors.map((type, index) => (
               <Label
                 key={index}
                 type={type}
                 setActiveType={setActiveType}
+                activeType={activeType}
                 filter
               />
             ))}
           </div>
-          <div className='flex flex-wrap gap-6'>
-            {filteredType.map((pokemon) => (
-              <Card
-                key={pokemon.id}
-                image={pokemon.image}
-                name={pokemon.name}
-                id={pokemon.id}
-              />
-            ))}
-          </div>
+          <motion.div layout className='flex flex-wrap gap-6'>
+            <AnimatePresence>
+              {filteredType.map((pokemon) => (
+                <Card
+                  key={pokemon.id}
+                  image={pokemon.image}
+                  name={pokemon.name}
+                  id={pokemon.id}
+                />
+              ))}
+            </AnimatePresence>
+          </motion.div>
         </div>
       </main>
     </>

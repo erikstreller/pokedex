@@ -45,9 +45,6 @@ export function twFromTypeColors(type: string) {
   if (type === 'dragon') {
     return 'from-dragon'
   }
-  if (type === 'dark') {
-    return 'from-dark'
-  }
   if (type === 'steel') {
     return 'from-steel'
   }
@@ -101,9 +98,6 @@ export function twToTypeColors(type: string) {
   }
   if (type === 'dragon') {
     return 'to-dragon'
-  }
-  if (type === 'dark') {
-    return 'to-dark'
   }
   if (type === 'steel') {
     return 'to-steel'

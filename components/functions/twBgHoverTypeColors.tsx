@@ -1,57 +1,57 @@
 // Tailwind does not support dynamic constructed class names
-export default function twBorderTypeColors(type: string) {
+export default function twBgHoverTypeColors(type: string) {
   if (type === 'all') {
-    return 'border-all'
+    return 'hover:bg-all'
   }
   if (type === 'normal') {
-    return 'border-normal'
+    return 'hover:bg-normal'
   }
   if (type === 'fire') {
-    return 'border-fire'
+    return 'hover:bg-fire'
   }
   if (type === 'water') {
-    return 'border-water'
+    return 'hover:bg-water'
   }
   if (type === 'electric') {
-    return 'border-electric'
+    return 'hover:bg-electric'
   }
   if (type === 'grass') {
-    return 'border-grass'
+    return 'hover:bg-grass'
   }
   if (type === 'ice') {
-    return 'border-ice'
+    return 'hover:bg-ice'
   }
   if (type === 'fighting') {
-    return 'border-fighting'
+    return 'hover:bg-fighting'
   }
   if (type === 'poison') {
-    return 'border-poison'
+    return 'hover:bg-poison'
   }
   if (type === 'ground') {
-    return 'border-ground'
+    return 'hover:bg-ground'
   }
   if (type === 'flying') {
-    return 'border-flying'
+    return 'hover:bg-flying'
   }
   if (type === 'psychic') {
-    return 'border-psychic'
+    return 'hover:bg-psychic'
   }
   if (type === 'bug') {
-    return 'border-bug'
+    return 'hover:bg-bug'
   }
   if (type === 'rock') {
-    return 'border-rock'
+    return 'hover:bg-rock'
   }
   if (type === 'ghost') {
-    return 'border-ghost'
+    return 'hover:bg-ghost'
   }
   if (type === 'dragon') {
-    return 'border-dragon'
+    return 'hover:bg-dragon'
   }
   if (type === 'steel') {
-    return 'border-steel'
+    return 'hover:bg-steel'
   }
   if (type === 'fairy') {
-    return 'border-fairy'
+    return 'hover:bg-fairy'
   }
 }

@@ -1,57 +1,57 @@
 // Tailwind does not support dynamic constructed class names
-export default function twBorderTypeColors(type: string) {
+export default function twBgTypeColors(type: string) {
   if (type === 'all') {
-    return 'border-all'
+    return 'bg-all'
   }
   if (type === 'normal') {
-    return 'border-normal'
+    return 'bg-normal'
   }
   if (type === 'fire') {
-    return 'border-fire'
+    return 'bg-fire'
   }
   if (type === 'water') {
-    return 'border-water'
+    return 'bg-water'
   }
   if (type === 'electric') {
-    return 'border-electric'
+    return 'bg-electric'
   }
   if (type === 'grass') {
-    return 'border-grass'
+    return 'bg-grass'
   }
   if (type === 'ice') {
-    return 'border-ice'
+    return 'bg-ice'
   }
   if (type === 'fighting') {
-    return 'border-fighting'
+    return 'bg-fighting'
   }
   if (type === 'poison') {
-    return 'border-poison'
+    return 'bg-poison'
   }
   if (type === 'ground') {
-    return 'border-ground'
+    return 'bg-ground'
   }
   if (type === 'flying') {
-    return 'border-flying'
+    return 'bg-flying'
   }
   if (type === 'psychic') {
-    return 'border-psychic'
+    return 'bg-psychic'
   }
   if (type === 'bug') {
-    return 'border-bug'
+    return 'bg-bug'
   }
   if (type === 'rock') {
-    return 'border-rock'
+    return 'bg-rock'
   }
   if (type === 'ghost') {
-    return 'border-ghost'
+    return 'bg-ghost'
   }
   if (type === 'dragon') {
-    return 'border-dragon'
+    return 'bg-dragon'
   }
   if (type === 'steel') {
-    return 'border-steel'
+    return 'bg-steel'
   }
   if (type === 'fairy') {
-    return 'border-fairy'
+    return 'bg-fairy'
   }
 }
