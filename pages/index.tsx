@@ -31,7 +31,7 @@ export default function Home() {
   return (
     <>
       <Seo />
-      <main className='flex h-screen w-full flex-col items-start justify-center bg-black'>
+      <main className='relative flex h-screen min-h-[500px] w-full flex-col items-start justify-center overflow-x-hidden bg-black'>
         <Image
           priority
           className='opacity-20'
@@ -43,6 +43,13 @@ export default function Home() {
         />
         <div className='z-10 mx-auto w-[90%] max-w-[1100px] text-white'>
           <div className='mb-8 text-7xl font-bold'>Pokédex</div>
+          <p className='mb-8 max-w-2xl text-3xl'>
+            Discover
+            <Accent gradient='from-electric to-fire'> types</Accent>,
+            <Accent gradient='from-psychic to-flying'> stats</Accent> and
+            <Accent gradient='from-water-colorful to-ice'> fun facts</Accent> of
+            your favorite Pokémon.
+          </p>
           <p className='mb-16 max-w-2xl text-3xl'>
             Did you know that the first Pokémon ever designed was{' '}
             <Link href='/pokemon/112'>
