@@ -6,6 +6,7 @@ import background from '../assets/landing-branden-skeli.jpg'
 import concept from '../assets/rhydon-ken-sugimori.jpg'
 import Accent from '../components/Accent'
 import Seo from '../components/Seo'
+import Tooltip from '../components/Tooltip'
 
 export default function Home() {
   const [loading, setLoading] = useState(false)
@@ -44,43 +45,53 @@ export default function Home() {
         <div className='z-10 mx-auto w-[90%] max-w-[1100px] text-white'>
           <div className='mb-8 text-7xl font-bold'>Pokédex</div>
           <p className='mb-8 max-w-2xl text-3xl'>
-            Discover
-            <Accent gradient='from-electric to-fire'> types</Accent>,
-            <Accent gradient='from-psychic to-flying'> stats</Accent> and
-            <Accent gradient='from-water-colorful to-ice'> fun facts</Accent> of
-            your favorite Pokémon.
+            Discover{' '}
+            <Tooltip content={typesText}>
+              <Accent gradient='from-electric to-fire'>types</Accent>
+            </Tooltip>
+            ,{' '}
+            <Tooltip content={statsText}>
+              <Accent gradient='from-psychic to-flying'>stats</Accent>
+            </Tooltip>{' '}
+            and{' '}
+            <Tooltip content={factsText}>
+              <Accent gradient='from-water-colorful to-ice'>fun facts</Accent>
+            </Tooltip>{' '}
+            of your favorite Pokémon.
           </p>
-          <p className='mb-16 max-w-2xl text-3xl'>
-            Did you know that the first Pokémon ever designed was{' '}
-            <Link href='/pokemon/112'>
-              <a
-                className='decoration-grass-colorful transition duration-1000 ease-in-out hover:underline hover:underline-offset-2'
-                onMouseOver={handleMouseOver}
-                onMouseLeave={handleMouseLeave}
-              >
-                <Accent gradient='from-grass-colorful to-water-colorful'>
-                  Rhydon
-                </Accent>
-              </a>
-            </Link>
-            ?
-          </p>
-          <div
-            className='left-calc-x top-calc-y absolute w-overlay-image'
-            style={{
-              left: `calc(${position.x}px + 125px)`,
-              top: `calc(${position.y}px - 175px)`
-            }}
-          >
-            <Image
-              src={concept}
-              layout='responsive'
-              alt='early concept design of Rhydon'
-              className={clsx(
-                'rounded-3xl transition duration-700 ease-[cubic-bezier(1,0,0,1,0,0)]',
-                showImage ? 'opacity-100' : 'opacity-0'
-              )}
-            />
+          <div>
+            <p className='mb-16 max-w-2xl text-3xl'>
+              Did you know that the first Pokémon ever designed was{' '}
+              <Link href='/pokemon/112'>
+                <a
+                  className='decoration-grass-colorful transition duration-1000 ease-in-out hover:underline hover:underline-offset-2'
+                  onMouseOver={handleMouseOver}
+                  onMouseLeave={handleMouseLeave}
+                >
+                  <Accent gradient='from-grass-colorful to-water-colorful'>
+                    Rhydon
+                  </Accent>
+                </a>
+              </Link>
+              ?
+            </p>
+            <div
+              className='left-calc-x top-calc-y absolute w-overlay-image'
+              style={{
+                left: `calc(${position.x}px + 125px)`,
+                top: `calc(${position.y}px - 175px)`
+              }}
+            >
+              <Image
+                src={concept}
+                layout='responsive'
+                alt='early concept design of Rhydon'
+                className={clsx(
+                  'rounded-3xl transition duration-700 ease-[cubic-bezier(1,0,0,1,0,0)]',
+                  showImage ? 'opacity-100' : 'opacity-0'
+                )}
+              />
+            </div>
           </div>
           <div className='mt-8 flex'>
             <div className='group relative'>
@@ -111,3 +122,27 @@ export default function Home() {
     </>
   )
 }
+
+const typesText = (
+  <>
+    17 of the 18{' '}
+    <Accent gradient='from-electric to-fire font-bold'>types</Accent> can be
+    found in the first 151 Pokémon.
+  </>
+)
+
+const statsText = (
+  <>
+    Each Pokémon has 6{' '}
+    <Accent gradient='from-psychic to-flying font-bold'>stats</Accent>: hp,
+    attack, defense, speed, special-attack and special-defense.
+  </>
+)
+
+const factsText = (
+  <>
+    To save memory the original games had only 38 base{' '}
+    <Accent gradient='from-water-colorful to-ice font-bold'>cries</Accent>{' '}
+    Pokémon could make.
+  </>
+)
