@@ -76,7 +76,10 @@ export default function Home() {
               ?
             </p>
             <div
-              className='left-calc-x top-calc-y absolute w-overlay-image'
+              className={clsx(
+                'left-calc-x top-calc-y absolute w-overlay-image transition duration-700 ease-[cubic-bezier(1,0,0,1,0,0)]',
+                showImage ? 'opacity-100' : '-z-10 opacity-0'
+              )}
               style={{
                 left: `calc(${position.x}px + 125px)`,
                 top: `calc(${position.y}px - 175px)`
@@ -86,10 +89,7 @@ export default function Home() {
                 src={concept}
                 layout='responsive'
                 alt='early concept design of Rhydon'
-                className={clsx(
-                  'rounded-3xl transition duration-700 ease-[cubic-bezier(1,0,0,1,0,0)]',
-                  showImage ? 'opacity-100' : 'opacity-0'
-                )}
+                className={clsx('rounded-3xl')}
               />
             </div>
           </div>
