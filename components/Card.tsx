@@ -28,7 +28,7 @@ export default function Card({ image, name, id, types }: CardProps) {
         <a
           className={clsx(
             'relative flex h-[194px] w-[194px] items-center justify-center text-left',
-            'rounded-2xl bg-gradient-to-r from-zinc-600 to-zinc-600 p-[2px]',
+            'rounded-2xl bg-gradient-to-r from-zinc-800 to-zinc-800 p-[2px]',
             'transition duration-200 hover:scale-[1.02] hover:bg-opacity-75',
             twHoverFromType(gradientType(types, types[0])),
             twHoverToType(gradientType(types, types[1]))
@@ -43,8 +43,9 @@ export default function Card({ image, name, id, types }: CardProps) {
               className='transition duration-200 hover:scale-[1.05]'
             />
           </div>
-          <div className='absolute bottom-[2px] w-[188px] rounded-b-[14px] px-6 py-2 text-lg font-bold backdrop-blur-md'>
-            {Capitalize(name)}
+          <div className='absolute bottom-[2px] flex w-[190px] justify-between rounded-b-[14px] px-6 py-2 text-lg font-semibold backdrop-blur-md'>
+            <div className='text-zinc-400'>#{id}</div>
+            <div>{Capitalize(name)}</div>
           </div>
         </a>
       </Link>
