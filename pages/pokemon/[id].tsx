@@ -4,6 +4,7 @@ import { GetStaticPaths } from 'next/types'
 import background from '../../assets/landing-branden-skeli.jpg'
 import BackLibrary from '../../components/BackLibrary'
 import Capitalize from '../../components/functions/Capitalize'
+import gradientType from '../../components/functions/gradientType'
 import {
   twFromTypeColors,
   twToTypeColors
@@ -91,14 +92,6 @@ export default function PokemonSide({
     .replace('KOFFINGs', 'Koffings')
     .replace('WEEZING', 'Weezing')
     .replace('STONEs', 'Stones')
-
-  function gradientType(types, type) {
-    if (type === undefined) {
-      return types[0]
-    } else {
-      return type
-    }
-  }
 
   return (
     <>
