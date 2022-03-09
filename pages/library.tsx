@@ -61,6 +61,7 @@ export default function Library({ pokemons }) {
                   image={pokemon.image}
                   name={pokemon.name}
                   id={pokemon.id}
+                  type={pokemon.types[0]}
                 />
               ))}
             </AnimatePresence>
