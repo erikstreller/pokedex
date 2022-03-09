@@ -12,7 +12,6 @@ module.exports = {
       },
       colors: {
         all: '#000000',
-        // all: '#0F172A',
         normal: '#A8A77A',
         fire: '#EE8130',
         water: '#6390F0',
@@ -35,7 +34,7 @@ module.exports = {
         dark: '#705746',
         steel: '#B7B7CE',
         fairy: '#D685AD',
-        'dark-theme': '#111111',
+        'dark-theme': '#050606',
         light: '#fefefe',
         link: '#58a6ff',
         divider: '#4b5563'
