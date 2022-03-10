@@ -8,18 +8,25 @@ export type LabelProps = {
   type: string
   setActiveType?: Dispatch<SetStateAction<string>>
   filter?: boolean
-  activeType?: string
+  activeStyle?: string
+  setActiveStyle?: Dispatch<SetStateAction<string>>
 } & React.ComponentPropsWithoutRef<'div'>
 
 export default function Label({
   type,
   setActiveType,
   filter,
-  activeType,
+  activeStyle,
+  setActiveStyle,
   className = ''
 }: LabelProps) {
   if (!filter) {
     return <BasicLabel type={type} />
+  }
+
+  const handleClick = () => {
+    setActiveType(type)
+    setActiveStyle(type)
   }
 
   return (
@@ -28,10 +35,10 @@ export default function Label({
       className={clsx(
         `cursor-pointer hover:bg-opacity-40`,
         twBgHoverTypeColors(type),
-        activeType === type ? clsx('bg-opacity-40', twBgTypeColors(type)) : '',
+        activeStyle === type ? clsx('bg-opacity-40', twBgTypeColors(type)) : '',
         className
       )}
-      onClick={(e) => setActiveType(type)}
+      onClick={handleClick}
     />
   )
 }

@@ -13,6 +13,7 @@ export default function Library({ pokemons }) {
   const [filteredType, setfilteredType] = useState([...pokemons])
   const [activeType, setActiveType] = useState('all')
   const [searchValue, setSearchValue] = useState(' ')
+  const [activeStyle, setActiveStyle] = useState(' ')
 
   useEffect(() => {
     if (activeType === 'all') {
@@ -24,6 +25,7 @@ export default function Library({ pokemons }) {
       pokemon.types.includes(activeType)
     )
 
+    setSearchValue(' ')
     setfilteredType(filtered)
   }, [activeType])
 
@@ -52,10 +54,14 @@ export default function Library({ pokemons }) {
               type='all'
               setActiveType={setActiveType}
               filter
-              activeType={activeType}
+              activeStyle={activeStyle}
+              setActiveStyle={setActiveStyle}
             />
             or
-            <Search setSearchValue={setSearchValue} />
+            <Search
+              setSearchValue={setSearchValue}
+              setActiveStyle={setActiveStyle}
+            />
             by name.
           </div>
           <div className='my-4 flex flex-wrap items-center gap-3 pb-5 text-lg'>
@@ -65,7 +71,8 @@ export default function Library({ pokemons }) {
                 key={index}
                 type={type}
                 setActiveType={setActiveType}
-                activeType={activeType}
+                activeStyle={activeStyle}
+                setActiveStyle={setActiveStyle}
                 filter
               />
             ))}
