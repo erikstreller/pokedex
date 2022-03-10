@@ -6,11 +6,13 @@ import Card from '../components/Card'
 import typeColors from '../components/constants/colors'
 import Footer from '../components/Footer'
 import Label from '../components/Label'
+import Search from '../components/Search'
 import Seo from '../components/Seo'
 
 export default function Library({ pokemons }) {
   const [filteredType, setfilteredType] = useState([...pokemons])
   const [activeType, setActiveType] = useState('all')
+  const [searchValue, setSearchValue] = useState(' ')
 
   useEffect(() => {
     if (activeType === 'all') {
@@ -24,6 +26,10 @@ export default function Library({ pokemons }) {
 
     setfilteredType(filtered)
   }, [activeType])
+
+  const filteredName = pokemons.filter((pokemon) =>
+    pokemon.name.includes(searchValue.toLowerCase())
+  )
 
   return (
     <div className='bg-dark-theme'>
@@ -49,7 +55,7 @@ export default function Library({ pokemons }) {
               activeType={activeType}
             />
             or
-            <div className='rounded bg-slate-700 pl-2 pr-36'>search ...</div>
+            <Search setSearchValue={setSearchValue} />
             by name.
           </div>
           <div className='my-4 flex flex-wrap items-center gap-3 pb-5 text-lg'>
@@ -66,15 +72,26 @@ export default function Library({ pokemons }) {
           </div>
           <motion.div layout className='mb-10 flex flex-wrap gap-6'>
             <AnimatePresence>
-              {filteredType.map((pokemon) => (
-                <Card
-                  key={pokemon.id}
-                  image={pokemon.image}
-                  name={pokemon.name}
-                  id={pokemon.id}
-                  types={pokemon.types}
-                />
-              ))}
+              {!filteredName.length &&
+                filteredType.map((pokemon) => (
+                  <Card
+                    key={pokemon.id}
+                    image={pokemon.image}
+                    name={pokemon.name}
+                    id={pokemon.id}
+                    types={pokemon.types}
+                  />
+                ))}
+              {filteredName.length &&
+                filteredName.map((pokemon) => (
+                  <Card
+                    key={pokemon.id}
+                    image={pokemon.image}
+                    name={pokemon.name}
+                    id={pokemon.id}
+                    types={pokemon.types}
+                  />
+                ))}
             </AnimatePresence>
           </motion.div>
         </div>
