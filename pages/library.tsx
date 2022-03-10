@@ -12,8 +12,10 @@ import Seo from '../components/Seo'
 export default function Library({ pokemons }) {
   const [filteredType, setfilteredType] = useState([...pokemons])
   const [activeType, setActiveType] = useState('all')
+  const [activeStyle, setActiveStyle] = useState('')
+
   const [searchValue, setSearchValue] = useState(' ')
-  const [activeStyle, setActiveStyle] = useState(' ')
+  const [searchError, setSearchError] = useState(false)
 
   useEffect(() => {
     if (activeType === 'all') {
@@ -33,6 +35,14 @@ export default function Library({ pokemons }) {
     pokemon.name.includes(searchValue.toLowerCase())
   )
 
+  useEffect(() => {
+    if (searchValue !== '' && searchValue !== ' ' && !filteredName.length) {
+      setSearchError(true)
+    } else {
+      setSearchError(false)
+    }
+  }, [searchValue])
+
   return (
     <div className='bg-dark-theme'>
       <Seo title='Library' />
@@ -51,9 +61,9 @@ export default function Library({ pokemons }) {
             Show
             <Label
               className='bg-slate-500'
+              filter
               type='all'
               setActiveType={setActiveType}
-              filter
               activeStyle={activeStyle}
               setActiveStyle={setActiveStyle}
             />
@@ -68,23 +78,27 @@ export default function Library({ pokemons }) {
             Filter by type:
             {typeColors.map((type, index) => (
               <Label
+                filter
                 key={index}
                 type={type}
                 setActiveType={setActiveType}
                 activeStyle={activeStyle}
                 setActiveStyle={setActiveStyle}
-                filter
               />
             ))}
           </div>
+          {searchError && (
+            <p className='text-lg text-zinc-400'>No Pokémon found.</p>
+          )}
           <motion.div layout className='mb-10 flex flex-wrap gap-6'>
             <AnimatePresence>
               {!filteredName.length &&
+                !searchError &&
                 filteredType.map((pokemon) => (
                   <Card
                     key={pokemon.id}
-                    image={pokemon.image}
                     name={pokemon.name}
+                    image={pokemon.image}
                     id={pokemon.id}
                     types={pokemon.types}
                   />
@@ -93,8 +107,8 @@ export default function Library({ pokemons }) {
                 filteredName.map((pokemon) => (
                   <Card
                     key={pokemon.id}
-                    image={pokemon.image}
                     name={pokemon.name}
+                    image={pokemon.image}
                     id={pokemon.id}
                     types={pokemon.types}
                   />
