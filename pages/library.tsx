@@ -18,6 +18,8 @@ export default function Library({ pokemons }) {
   const [searchError, setSearchError] = useState(false)
 
   useEffect(() => {
+    setSearchValue(' ')
+
     if (activeType === 'all') {
       setfilteredType(pokemons)
       return
@@ -27,7 +29,6 @@ export default function Library({ pokemons }) {
       pokemon.types.includes(activeType)
     )
 
-    setSearchValue(' ')
     setfilteredType(filtered)
   }, [activeType])
 
