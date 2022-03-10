@@ -2,11 +2,15 @@ import clsx from 'clsx'
 import Capitalize from './functions/Capitalize'
 import twBorderTypeColors from './functions/twBorderTypeColors'
 
-export type LabelProps = {
+export type BasicLabelProps = {
   type: string
-}
+} & React.ComponentPropsWithoutRef<'div'>
 
-export default function BasicLabel({ type, className = '', ...rest }) {
+export default function BasicLabel({
+  type,
+  className = '',
+  ...rest
+}: BasicLabelProps) {
   return (
     <div
       className={clsx(

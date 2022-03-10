@@ -30,19 +30,30 @@ export default function Library({ pokemons }) {
       <Seo title='Library' />
       <main className='min-h-screen w-full bg-dark-theme'>
         <div className='layout'>
-          <div className='pt-10 pb-4 text-4xl font-bold'>
+          <div className='pt-10 pb-4 text-4xl font-bold underline decoration-dotted underline-offset-2'>
+            Pokédex
+          </div>
+          <div className='text-2xl font-semibold text-zinc-400'>
             In the original games there where{' '}
-            <Accent gradient='from-psychic'>151 </Accent>
+            <Accent gradient='from-psychic to-flying'>151 </Accent>
             Pokémon.
             {/* Mew: see notes under mew.md */}
           </div>
-          <div className='my-4 flex flex-wrap gap-3 pb-5'>
+          <div className='mt-6 flex flex-wrap items-center gap-2 pb-2 pt-4 text-lg'>
+            Show
             <Label
+              className='bg-slate-500'
               type='all'
               setActiveType={setActiveType}
               filter
               activeType={activeType}
             />
+            or
+            <div className='rounded bg-slate-700 pl-2 pr-36'>search ...</div>
+            by name.
+          </div>
+          <div className='my-4 flex flex-wrap items-center gap-3 pb-5 text-lg'>
+            Filter by type:
             {typeColors.map((type, index) => (
               <Label
                 key={index}
