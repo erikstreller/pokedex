@@ -21,6 +21,6 @@ a {
 
 @layer components {
   .layout {
-    @apply text-light z-10 mx-auto w-[90%] max-w-[1100px];
+    @apply z-10 mx-auto w-[90%] max-w-[1066px] text-light;
   }
 }

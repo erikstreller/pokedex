@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react'
 import Accent from '../components/Accent'
 import Card from '../components/Card'
 import typeColors from '../components/constants/colors'
+import Divider from '../components/Divider'
 import Footer from '../components/Footer'
 import Label from '../components/Label'
 import Search from '../components/Search'
@@ -79,7 +80,7 @@ export default function Library({ pokemons }) {
             />
             by name.
           </div>
-          <div className='my-4 flex flex-wrap items-center gap-3 pb-5 text-lg'>
+          <div className='mt-4 mb-[39px] flex flex-wrap items-center gap-3 text-lg'>
             Filter by type:
             {typeColors.map((type, index) => (
               <Label
@@ -92,10 +93,11 @@ export default function Library({ pokemons }) {
               />
             ))}
           </div>
+          <Divider />
           {searchError && (
-            <p className='text-lg text-zinc-400'>No Pokémon found.</p>
+            <p className='pt-3 text-lg text-zinc-400'>No Pokémon found.</p>
           )}
-          <motion.div layout className='mb-10 flex flex-wrap gap-6'>
+          <motion.div layout className='my-10 flex flex-wrap gap-6'>
             <AnimatePresence>
               {!filteredName.length &&
                 !searchError &&
