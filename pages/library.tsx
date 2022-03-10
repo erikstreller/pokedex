@@ -12,13 +12,15 @@ import Seo from '../components/Seo'
 export default function Library({ pokemons }) {
   const [filteredType, setfilteredType] = useState([...pokemons])
   const [activeType, setActiveType] = useState('all')
-  const [activeStyle, setActiveStyle] = useState('')
+  const [activeStyle, setActiveStyle] = useState('all')
 
   const [searchValue, setSearchValue] = useState(' ')
   const [searchError, setSearchError] = useState(false)
+  const [showOutline, setShowOutline] = useState(false)
 
   useEffect(() => {
     setSearchValue(' ')
+    setShowOutline(false)
 
     if (activeType === 'all') {
       setfilteredType(pokemons)
@@ -72,6 +74,8 @@ export default function Library({ pokemons }) {
             <Search
               setSearchValue={setSearchValue}
               setActiveStyle={setActiveStyle}
+              showOutline={showOutline}
+              setShowOutline={setShowOutline}
             />
             by name.
           </div>
