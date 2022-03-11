@@ -56,13 +56,27 @@ export default function Library({ pokemons }) {
             Pokédex
           </div>
           <div className='text-2xl font-semibold text-zinc-400'>
+            <Accent gradient='from-grass-colorful to-water-colorful'>
+              Hover{' '}
+            </Accent>
+            and <Accent gradient='from-electric to-fire'>explore</Accent>.
+            {/* Mew: see notes under mew.md */}
+          </div>
+          <div className='text-2xl font-semibold text-zinc-400'>
             In the original games there where{' '}
             <Accent gradient='from-psychic to-flying'>151 </Accent>
             Pokémon.
             {/* Mew: see notes under mew.md */}
           </div>
           <div className='mt-6 flex flex-wrap items-center gap-2 pb-2 pt-4 text-lg'>
-            Show
+            <Search
+              setSearchValue={setSearchValue}
+              setActiveStyle={setActiveStyle}
+              showOutline={showOutline}
+              setShowOutline={setShowOutline}
+            />
+          </div>
+          <div className='mt-4 mb-[39px] flex flex-wrap items-center gap-3 text-lg'>
             <Label
               filter
               type='all'
@@ -70,17 +84,7 @@ export default function Library({ pokemons }) {
               activeStyle={activeStyle}
               setActiveStyle={setActiveStyle}
             />
-            or
-            <Search
-              setSearchValue={setSearchValue}
-              setActiveStyle={setActiveStyle}
-              showOutline={showOutline}
-              setShowOutline={setShowOutline}
-            />
-            by name.
-          </div>
-          <div className='mt-4 mb-[39px] flex flex-wrap items-center gap-3 text-lg'>
-            Filter by type:
+            <span className='pb-[2px] text-zinc-400'>or filter by type</span>
             {typeColors.map((type, index) => (
               <Label
                 filter
