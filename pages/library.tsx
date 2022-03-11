@@ -64,7 +64,6 @@ export default function Library({ pokemons }) {
           <div className='mt-6 flex flex-wrap items-center gap-2 pb-2 pt-4 text-lg'>
             Show
             <Label
-              className='bg-slate-500'
               filter
               type='all'
               setActiveType={setActiveType}
