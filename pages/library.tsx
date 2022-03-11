@@ -2,6 +2,7 @@ import { AnimatePresence, motion } from 'framer-motion'
 import { GetStaticProps } from 'next'
 import { useEffect, useState } from 'react'
 import Accent from '../components/Accent'
+import BackButton from '../components/BackButton'
 import Card from '../components/Card'
 import typeColors from '../components/constants/colors'
 import Divider from '../components/Divider'
@@ -50,6 +51,7 @@ export default function Library({ pokemons }) {
   return (
     <div className='bg-dark-theme'>
       <Seo title='Library' />
+      <BackButton text='Start' link='/' />
       <main className='min-h-screen w-full bg-dark-theme'>
         <div className='layout'>
           <div className='pt-10 pb-4 text-4xl font-bold underline decoration-dotted underline-offset-2'>
