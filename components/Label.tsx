@@ -21,7 +21,7 @@ export default function Label({
   className = ''
 }: LabelProps) {
   if (!filter) {
-    return <BasicLabel type={type} border className='rounded-full' />
+    return <BasicLabel type={type} border />
   }
 
   const handleClick = () => {
@@ -33,7 +33,7 @@ export default function Label({
     <BasicLabel
       type={type}
       className={clsx(
-        `cursor-pointer rounded-md hover:bg-opacity-40`,
+        `cursor-pointer hover:bg-opacity-40`,
         twBgHoverTypeColors(type),
         activeStyle === type ? clsx('bg-opacity-40', twBgTypeColors(type)) : '',
         className

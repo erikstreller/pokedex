@@ -17,7 +17,7 @@ export default function BasicLabel({
     <div
       className={clsx(
         className,
-        'flex justify-center border-2 py-1 px-3 align-middle text-sm transition-all duration-200 ease-in-out',
+        'flex justify-center rounded-md border-2 py-1 px-3 align-middle text-sm transition-all duration-200 ease-in-out',
         border ? twBorderTypeColors(type) : ''
       )}
       {...rest}
