@@ -21,6 +21,9 @@ export function twFromTypeColors(type: string) {
   if (type === 'fighting') {
     return 'from-fighting'
   }
+  if (type === 'fighting-colorful') {
+    return 'from-fighting-colorful'
+  }
   if (type === 'poison') {
     return 'from-poison'
   }
@@ -62,6 +65,9 @@ export function twToTypeColors(type: string) {
   }
   if (type === 'water') {
     return 'to-water'
+  }
+  if (type === 'water-colorful') {
+    return 'to-water-colorful'
   }
   if (type === 'electric') {
     return 'to-electric'

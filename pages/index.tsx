@@ -5,11 +5,11 @@ import { useState } from 'react'
 import background from '../assets/landing-branden-skeli.jpg'
 import concept from '../assets/rhydon-ken-sugimori.jpg'
 import Accent from '../components/Accent'
+import BlurButton from '../components/BlurButton'
 import Seo from '../components/Seo'
 import Tooltip from '../components/Tooltip'
 
 export default function Home() {
-  const [loading, setLoading] = useState(false)
   const [showImage, setShowImage] = useState(false)
 
   const [position, setPosition] = useState({
@@ -93,30 +93,11 @@ export default function Home() {
               />
             </div>
           </div>
-          <div className='mt-8 flex'>
-            <div className='group relative'>
-              <div
-                className={clsx(
-                  'absolute -inset-1 rounded-lg',
-                  'bg-gradient-to-r from-fighting-colorful to-water-colorful opacity-75 blur',
-                  'transition duration-700 group-hover:opacity-100 group-hover:duration-200'
-                )}
-              />
-              <Link href='/library'>
-                <a
-                  className={clsx(
-                    'inline-flex scale-100 rounded-lg border',
-                    'border-gray-600 bg-black px-4 py-2 text-xl shadow-sm',
-                    'transition duration-100 hover:scale-[1.03] active:scale-[0.97]'
-                  )}
-                  onClick={(e) => setLoading(true)}
-                >
-                  {!loading && 'Explore'}
-                  {loading && 'Loading...'}
-                </a>
-              </Link>
-            </div>
-          </div>
+          <BlurButton
+            text='explore'
+            types={['fighting-colorful', 'water-colorful']}
+            link='/libary'
+          />
         </div>
       </main>
     </>

@@ -3,6 +3,7 @@ import Image from 'next/image'
 import { GetStaticPaths } from 'next/types'
 import background from '../../assets/landing-branden-skeli.jpg'
 import BackLibrary from '../../components/BackLibrary'
+import BlurButton from '../../components/BlurButton'
 import Capitalize from '../../components/functions/Capitalize'
 import gradientType from '../../components/functions/gradientType'
 import {
@@ -116,6 +117,13 @@ export default function PokemonSide({
           <div className='mt-4 mb-10 max-w-[534px] text-2xl'>
             {modifiedDescription}
           </div>
+
+          <BlurButton
+            text='stats'
+            types={types}
+            link={`/pokemon/${id.toString()}/stats`}
+          />
+
           <div className='absolute -right-[5%] bottom-[5%]'>
             <Image src={image} width={500} height={500} alt={name} />
           </div>
