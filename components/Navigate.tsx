@@ -1,23 +1,38 @@
+import clsx from 'clsx'
 import Link from 'next/link'
 
-function Next({ id }) {
+type StyleProps = {
+  id: number
+  text: string
+  className?: string
+  before?: boolean
+}
+
+function Style({ id, text, className = '', before }: StyleProps) {
   return (
-    <Link href={`${id + 1}`}>
-      <a className='fixed left-1/2 top-4 ml-2 flex rounded-md bg-slate-700 align-middle'>
-        <div className='py-1 px-3'>{id + 1} &rarr;</div>
+    <Link href={`${id}`}>
+      <a
+        className={clsx(
+          'fixed top-6 rounded-md border-2 border-zinc-800 bg-dark-theme py-1 px-3',
+          'flex justify-center align-middle text-light',
+          'transition duration-100 hover:scale-[1.03] hover:border-all focus:border-all active:scale-[0.97]',
+          className
+        )}
+      >
+        {before && text}
+        {id}
+        {!before && text}
       </a>
     </Link>
   )
 }
 
+function Next({ id }) {
+  return <Style id={id + 1} text=' &rarr;' className='left-1/2 ml-4' />
+}
+
 function Prev({ id }) {
-  return (
-    <Link href={`${id - 1}`}>
-      <a className='fixed right-1/2 top-4 mr-2 flex rounded-md bg-slate-700 align-middle'>
-        <div className='py-1 px-3'>&larr; {id - 1}</div>
-      </a>
-    </Link>
-  )
+  return <Style id={id - 1} text='&larr; ' className='right-1/2 mr-4' before />
 }
 
 export default function Navigate({ id }) {
