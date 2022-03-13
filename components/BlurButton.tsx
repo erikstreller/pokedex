@@ -1,5 +1,6 @@
 import clsx from 'clsx'
 import Link from 'next/link'
+import useLoaded from '../hooks/useLoaded'
 import Capitalize from './functions/Capitalize'
 import gradientType from './functions/gradientType'
 import {
@@ -14,9 +15,11 @@ type BlurButtonProps = {
 }
 
 export default function BlurButton({ text, types, link }: BlurButtonProps) {
+  const isLoaded = useLoaded()
+
   return (
-    <div className='flex'>
-      <div className='group relative'>
+    <div className={clsx('flex', isLoaded && 'fade-in-start')}>
+      <div className='group relative' data-fade='4'>
         <div
           className={clsx(
             'absolute -inset-1 rounded-lg',

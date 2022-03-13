@@ -24,3 +24,22 @@ a {
     @apply z-10 mx-auto w-[90%] max-w-[1066px] text-light;
   }
 }
+
+[data-fade] {
+  @apply translate-y-10 opacity-0 transition duration-500 ease-out;
+}
+.fade-in-start [data-fade] {
+  @apply translate-y-0 opacity-100;
+}
+.fade-in-start [data-fade='1'] {
+  transition-delay: 150ms;
+}
+.fade-in-start [data-fade='2'] {
+  transition-delay: 300ms;
+}
+.fade-in-start [data-fade='3'] {
+  transition-delay: 450ms;
+}
+.fade-in-start [data-fade='4'] {
+  transition-delay: 600ms;
+}
