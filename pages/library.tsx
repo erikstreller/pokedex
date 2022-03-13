@@ -62,7 +62,6 @@ export default function Library({ pokemons }) {
               Hover{' '}
             </Accent>
             and <Accent gradient='from-electric to-fire'>explore</Accent>.
-            {/* Mew: see notes under mew.md */}
           </div>
           <div className='text-2xl font-semibold text-zinc-400'>
             In the original games there where{' '}

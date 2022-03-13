@@ -13,7 +13,6 @@ import useLoaded from '../hooks/useLoaded'
 
 export default function Home() {
   const [showImage, setShowImage] = useState(false)
-
   const [position, setPosition] = useState({
     x: '',
     y: ''

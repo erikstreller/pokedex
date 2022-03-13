@@ -1,7 +1,8 @@
-import { createContext, useContext, useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
+import { usePreloadState } from '../context/PreloadContext'
 
 export default function useLoaded() {
-  const preloaded = useContext(createContext<boolean>(false))
+  const preloaded = usePreloadState()
   const [isLoaded, setIsLoaded] = useState<boolean>(false)
 
   useEffect(() => {
