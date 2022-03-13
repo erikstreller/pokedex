@@ -1,3 +1,4 @@
+import clsx from 'clsx'
 import { AnimatePresence, motion } from 'framer-motion'
 import { GetStaticProps } from 'next'
 import { useEffect, useState } from 'react'
@@ -10,6 +11,8 @@ import Footer from '../components/Footer'
 import Label from '../components/Label'
 import Search from '../components/Search'
 import Seo from '../components/Seo'
+import { PreloadProvider } from '../context/PreloadContext'
+import useLoaded from '../hooks/useLoaded'
 
 export default function Library({ pokemons }) {
   const [filteredType, setfilteredType] = useState([...pokemons])
@@ -48,86 +51,103 @@ export default function Library({ pokemons }) {
     }
   }, [searchValue])
 
+  const isLoaded = useLoaded()
+
   return (
     <div className='bg-dark-theme'>
       <Seo title='Library' />
       <BackButton text='Start' link='/' />
-      <main className='min-h-screen w-full bg-dark-theme'>
-        <div className='layout'>
-          <div className='pt-10 pb-4 text-4xl font-bold underline decoration-dotted underline-offset-2'>
-            Pokédex
-          </div>
-          <div className='text-2xl font-semibold text-zinc-400'>
-            <Accent gradient='from-grass-colorful to-water-colorful'>
-              Hover{' '}
-            </Accent>
-            and <Accent gradient='from-electric to-fire'>explore</Accent>.
-          </div>
-          <div className='text-2xl font-semibold text-zinc-400'>
-            In the original games there where{' '}
-            <Accent gradient='from-psychic to-flying'>151 </Accent>
-            Pokémon.
-            {/* Mew: see notes under mew.md */}
-          </div>
-          <div className='mt-6 flex flex-wrap items-center gap-2 pb-2 pt-4 text-lg'>
-            <Search
-              setSearchValue={setSearchValue}
-              setActiveStyle={setActiveStyle}
-              showOutline={showOutline}
-              setShowOutline={setShowOutline}
-            />
-          </div>
-          <div className='mt-4 mb-[39px] flex flex-wrap items-center gap-3 text-lg'>
-            <Label
-              filter
-              type='all'
-              setActiveType={setActiveType}
-              activeStyle={activeStyle}
-              setActiveStyle={setActiveStyle}
-            />
-            <span className='pb-[2px] text-zinc-400'>or filter by type</span>
-            {typeColors.map((type, index) => (
+      <PreloadProvider>
+        <main className='min-h-screen w-full bg-dark-theme'>
+          <div className={clsx('layout', isLoaded && 'fade-in-start')}>
+            <div
+              className='pt-10 pb-4 text-4xl font-bold underline decoration-dotted underline-offset-2'
+              data-fade='1'
+            >
+              Pokédex
+            </div>
+            <div className='text-2xl font-semibold text-zinc-400' data-fade='2'>
+              <Accent gradient='from-grass-colorful to-water-colorful'>
+                Hover{' '}
+              </Accent>
+              and <Accent gradient='from-electric to-fire'>explore</Accent>.
+            </div>
+            <div className='text-2xl font-semibold text-zinc-400' data-fade='3'>
+              In the original games there where{' '}
+              <Accent gradient='from-psychic to-flying'>151 </Accent>
+              Pokémon.
+              {/* Mew: see notes under mew.md */}
+            </div>
+            <div
+              className='mt-6 flex flex-wrap items-center gap-2 pb-2 pt-4 text-lg'
+              data-fade='4'
+            >
+              <Search
+                setSearchValue={setSearchValue}
+                setActiveStyle={setActiveStyle}
+                showOutline={showOutline}
+                setShowOutline={setShowOutline}
+              />
+            </div>
+            <div
+              className='mt-4 mb-[39px] flex flex-wrap items-center gap-3 text-lg'
+              data-fade='5'
+            >
               <Label
                 filter
-                key={index}
-                type={type}
+                type='all'
                 setActiveType={setActiveType}
                 activeStyle={activeStyle}
                 setActiveStyle={setActiveStyle}
               />
-            ))}
+              <span className='pb-[2px] text-zinc-400'>or filter by type</span>
+              {typeColors.map((type, index) => (
+                <Label
+                  filter
+                  key={index}
+                  type={type}
+                  setActiveType={setActiveType}
+                  activeStyle={activeStyle}
+                  setActiveStyle={setActiveStyle}
+                />
+              ))}
+            </div>
+            <Divider />
+            {searchError && (
+              <p className='pt-3 text-lg text-zinc-400'>No Pokémon found.</p>
+            )}
+            <motion.div
+              layout
+              className='my-10 flex flex-wrap gap-6'
+              data-fade='6'
+            >
+              <AnimatePresence>
+                {!filteredName.length &&
+                  !searchError &&
+                  filteredType.map((pokemon) => (
+                    <Card
+                      key={pokemon.id}
+                      name={pokemon.name}
+                      image={pokemon.image}
+                      id={pokemon.id}
+                      types={pokemon.types}
+                    />
+                  ))}
+                {filteredName.length &&
+                  filteredName.map((pokemon) => (
+                    <Card
+                      key={pokemon.id}
+                      name={pokemon.name}
+                      image={pokemon.image}
+                      id={pokemon.id}
+                      types={pokemon.types}
+                    />
+                  ))}
+              </AnimatePresence>
+            </motion.div>
           </div>
-          <Divider />
-          {searchError && (
-            <p className='pt-3 text-lg text-zinc-400'>No Pokémon found.</p>
-          )}
-          <motion.div layout className='my-10 flex flex-wrap gap-6'>
-            <AnimatePresence>
-              {!filteredName.length &&
-                !searchError &&
-                filteredType.map((pokemon) => (
-                  <Card
-                    key={pokemon.id}
-                    name={pokemon.name}
-                    image={pokemon.image}
-                    id={pokemon.id}
-                    types={pokemon.types}
-                  />
-                ))}
-              {filteredName.length &&
-                filteredName.map((pokemon) => (
-                  <Card
-                    key={pokemon.id}
-                    name={pokemon.name}
-                    image={pokemon.image}
-                    id={pokemon.id}
-                    types={pokemon.types}
-                  />
-                ))}
-            </AnimatePresence>
-          </motion.div>
-        </div>
-      </main>
+        </main>
+      </PreloadProvider>
       <Footer />
     </div>
   )

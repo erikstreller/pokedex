@@ -43,3 +43,9 @@ a {
 .fade-in-start [data-fade='4'] {
   transition-delay: 600ms;
 }
+.fade-in-start [data-fade='5'] {
+  transition-delay: 750ms;
+}
+.fade-in-start [data-fade='6'] {
+  transition-delay: 900ms;
+}
