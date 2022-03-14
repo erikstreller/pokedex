@@ -116,35 +116,33 @@ export default function Library({ pokemons }) {
             {searchError && (
               <p className='pt-3 text-lg text-zinc-400'>No Pokémon found.</p>
             )}
-            <motion.div
-              layout
-              className='my-10 flex flex-wrap gap-6'
-              data-fade='6'
-            >
-              <AnimatePresence>
-                {!filteredName.length &&
-                  !searchError &&
-                  filteredType.map((pokemon) => (
-                    <Card
-                      key={pokemon.id}
-                      name={pokemon.name}
-                      image={pokemon.image}
-                      id={pokemon.id}
-                      types={pokemon.types}
-                    />
-                  ))}
-                {filteredName.length &&
-                  filteredName.map((pokemon) => (
-                    <Card
-                      key={pokemon.id}
-                      name={pokemon.name}
-                      image={pokemon.image}
-                      id={pokemon.id}
-                      types={pokemon.types}
-                    />
-                  ))}
-              </AnimatePresence>
-            </motion.div>
+            <div data-fade='6'>
+              <motion.div layout className='my-10 flex flex-wrap gap-6'>
+                <AnimatePresence>
+                  {!filteredName.length &&
+                    !searchError &&
+                    filteredType.map((pokemon) => (
+                      <Card
+                        key={pokemon.id}
+                        name={pokemon.name}
+                        image={pokemon.image}
+                        id={pokemon.id}
+                        types={pokemon.types}
+                      />
+                    ))}
+                  {filteredName.length &&
+                    filteredName.map((pokemon) => (
+                      <Card
+                        key={pokemon.id}
+                        name={pokemon.name}
+                        image={pokemon.image}
+                        id={pokemon.id}
+                        types={pokemon.types}
+                      />
+                    ))}
+                </AnimatePresence>
+              </motion.div>
+            </div>
           </div>
         </main>
       </PreloadProvider>
