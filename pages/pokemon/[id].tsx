@@ -1,9 +1,10 @@
 import clsx from 'clsx'
 import Image from 'next/image'
 import { GetStaticPaths } from 'next/types'
+import { useState } from 'react'
 import background from '../../assets/landing-branden-skeli.jpg'
-import BackButton from '../../components/BackButton'
-import BlurButton from '../../components/BlurButton'
+import BackButton from '../../components/buttons/BackButton'
+import StatsButton from '../../components/buttons/StatsButton'
 import Capitalize from '../../components/functions/Capitalize'
 import gradientType from '../../components/functions/gradientType'
 import {
@@ -13,6 +14,7 @@ import {
 import Label from '../../components/Label'
 import Navigate from '../../components/Navigate'
 import Seo from '../../components/Seo'
+import Stats from '../../components/StatsChart'
 import { getAllPokemonIds } from '../library'
 
 export async function getStaticProps({ params }) {
@@ -94,6 +96,12 @@ export default function PokemonSide({
     .replace('WEEZING', 'Weezing')
     .replace('STONEs', 'Stones')
 
+  const [showStats, setShowStats] = useState<boolean>(false)
+
+  const handleShowStats = () => {
+    showStats ? setShowStats(false) : setShowStats(true)
+  }
+
   return (
     <>
       <Seo title={Capitalize(name)} />
@@ -107,6 +115,8 @@ export default function PokemonSide({
           objectFit='cover'
           objectPosition='center'
         />
+        <Navigate id={id} />
+        <BackButton text='library' link='/library' />
         <div className='relative z-10 mx-auto flex h-full w-[90%] max-w-[1100px] flex-col items-start justify-center text-white'>
           <p className='text-5xl font-bold'>{Capitalize(name)}</p>
           <div className='my-4 flex flex-wrap gap-3'>
@@ -117,18 +127,13 @@ export default function PokemonSide({
           <div className='mt-4 mb-10 max-w-[534px] text-2xl'>
             {modifiedDescription}
           </div>
-
-          <BlurButton
-            text='stats'
-            types={types}
-            link={`/pokemon/${id.toString()}/stats`}
-          />
-
-          <div className='absolute -right-[5%] bottom-[5%]'>
-            <Image src={image} width={500} height={500} alt={name} />
-          </div>
-          <Navigate id={id} />
-          <BackButton text='library' link='/library' />
+          <StatsButton text='stats' types={types} onClick={handleShowStats} />
+          {!showStats && (
+            <div className='absolute -right-[5%] bottom-[5%]'>
+              <Image src={image} width={500} height={500} alt={name} />
+            </div>
+          )}
+          {showStats && <Stats stats={stats} types={types} />}
         </div>
         <div
           className={clsx(
@@ -139,16 +144,11 @@ export default function PokemonSide({
           style={{
             clipPath: 'polygon(61.8% 0, 100% 0%, 100% 100%, 41.8% 100%)'
           }}
-        ></div>
+        />
         <div
           className='absolute bottom-0 h-screen w-full bg-slate-900'
           style={{ clipPath: 'polygon(62% 0, 100% 0%, 100% 100%, 42% 100%)' }}
-        ></div>
-        {/* {stats.map((stat, index) => (
-            <p key={index}>
-              {stat.name}: <span>{stat.value}</span>
-            </p>
-          ))} */}
+        />
       </main>
     </>
   )
