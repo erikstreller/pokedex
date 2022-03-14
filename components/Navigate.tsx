@@ -13,7 +13,7 @@ function Style({ id, text, className = '', before }: StyleProps) {
     <Link href={`${id}`}>
       <a
         className={clsx(
-          'fixed top-6 rounded-md border-2 border-zinc-800 bg-dark-theme py-1 px-3',
+          'fixed top-6 z-20 rounded-md border-2 border-zinc-800 bg-dark-theme py-1 px-3',
           'flex justify-center align-middle text-light',
           'transition duration-100 hover:scale-[1.03] hover:border-all focus:border-all active:scale-[0.97]',
           className
