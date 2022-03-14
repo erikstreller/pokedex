@@ -1,6 +1,6 @@
 import clsx from 'clsx'
 import Link from 'next/link'
-import Capitalize from './functions/Capitalize'
+import Capitalize from '../functions/Capitalize'
 
 type BackButtonProps = {
   text: string
