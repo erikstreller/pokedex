@@ -10,10 +10,11 @@ type StatsButtonProps = {
 export default function StatsButton({
   text,
   types,
+  className = '',
   ...rest
 }: StatsButtonProps) {
   return (
-    <UnstyledBlurButton types={types}>
+    <UnstyledBlurButton types={types} className={className}>
       <button
         className={clsx(
           'inline-flex scale-100 rounded-lg border',

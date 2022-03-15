@@ -10,10 +10,11 @@ import {
 type UnstyledBlurButtonProps = {
   types: string[]
   children: ReactNode
-}
+} & React.ComponentPropsWithoutRef<'div'>
 
 export default function UnstyledBlurButton({
   types,
+  className = '',
   children
 }: UnstyledBlurButtonProps) {
   const isLoaded = useLoaded()
@@ -27,7 +28,8 @@ export default function UnstyledBlurButton({
             'bg-gradient-to-r opacity-75 blur',
             'transition duration-700 group-hover:opacity-100 group-hover:duration-200',
             twFromTypeColors(gradientType(types, types[0])),
-            twToTypeColors(gradientType(types, types[1]))
+            twToTypeColors(gradientType(types, types[1])),
+            className
           )}
         />
         {children}

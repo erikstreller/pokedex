@@ -97,9 +97,11 @@ export default function PokemonSide({
     .replace('STONEs', 'Stones')
 
   const [showStats, setShowStats] = useState<boolean>(false)
+  const [blurColor, setBlurColor] = useState<boolean>(true)
 
   const handleShowStats = () => {
     showStats ? setShowStats(false) : setShowStats(true)
+    blurColor ? setBlurColor(false) : setBlurColor(true)
   }
 
   return (
@@ -127,7 +129,12 @@ export default function PokemonSide({
           <div className='mt-4 mb-10 max-w-[534px] text-2xl'>
             {modifiedDescription}
           </div>
-          <StatsButton text='stats' types={types} onClick={handleShowStats} />
+          <StatsButton
+            text='stats'
+            types={types}
+            onClick={handleShowStats}
+            className={blurColor ? '' : 'from-slate-700 to-slate-700'}
+          />
           {!showStats && (
             <div className='absolute -right-[5%] bottom-[5%]'>
               <Image src={image} width={500} height={500} alt={name} />
