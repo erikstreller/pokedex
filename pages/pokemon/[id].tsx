@@ -131,9 +131,15 @@ export default function PokemonSide({
           </div>
           <StatsButton
             text='stats'
-            types={types}
             onClick={handleShowStats}
-            className={blurColor ? '' : 'from-slate-700 to-slate-700'}
+            className={
+              blurColor
+                ? clsx(
+                    twFromTypeColors(gradientType(types, types[0])),
+                    twToTypeColors(gradientType(types, types[1]))
+                  )
+                : 'from-slate-700 to-slate-700'
+            }
           />
           {!showStats && (
             <div className='absolute -right-[5%] bottom-[5%]'>

@@ -4,17 +4,15 @@ import UnstyledBlurButton from './UnstyledBlurButton'
 
 type StatsButtonProps = {
   text: string
-  types: string[]
 } & React.ComponentPropsWithoutRef<'button'>
 
 export default function StatsButton({
   text,
-  types,
   className = '',
   ...rest
 }: StatsButtonProps) {
   return (
-    <UnstyledBlurButton types={types} className={className}>
+    <UnstyledBlurButton className={className}>
       <button
         className={clsx(
           'inline-flex scale-100 rounded-lg border',

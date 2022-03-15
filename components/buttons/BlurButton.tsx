@@ -5,13 +5,16 @@ import UnstyledBlurButton from './UnstyledBlurButton'
 
 type BlurButtonProps = {
   text: string
-  types: string[]
   link: string
-}
+} & React.ComponentPropsWithoutRef<'a'>
 
-export default function BlurButton({ text, types, link }: BlurButtonProps) {
+export default function BlurButton({
+  text,
+  link,
+  className = ''
+}: BlurButtonProps) {
   return (
-    <UnstyledBlurButton types={types}>
+    <UnstyledBlurButton className={className}>
       <Link href={link}>
         <a
           className={clsx(
