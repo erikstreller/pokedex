@@ -15,6 +15,7 @@ import Label from '../../components/Label'
 import Navigate from '../../components/Navigate'
 import Seo from '../../components/Seo'
 import Stats from '../../components/StatsChart'
+import StatsContainer from '../../components/StatsContainer'
 import { getAllPokemonIds } from '../library'
 
 export async function getStaticProps({ params }) {
@@ -146,11 +147,21 @@ export default function PokemonSide({
               <Image src={image} width={500} height={500} alt={name} />
             </div>
           )}
-          {showStats && <Stats stats={stats} types={types} />}
+          {showStats && (
+            <StatsContainer
+              className={clsx(
+                'from-slate-700 to-slate-700'
+                // twFromTypeColors(gradientType(types, types[0])),
+                // twToTypeColors(gradientType(types, types[1]))
+              )}
+            >
+              <Stats stats={stats} types={types} />
+            </StatsContainer>
+          )}
         </div>
         <div
           className={clsx(
-            'absolute bottom-0 h-screen w-full bg-gradient-to-b',
+            'absolute bottom-0 h-screen w-full animate-flicker bg-gradient-to-b',
             twFromTypeColors(gradientType(types, types[0])),
             twToTypeColors(gradientType(types, types[1]))
           )}

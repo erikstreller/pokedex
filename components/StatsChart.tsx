@@ -13,9 +13,9 @@ type StatsProps = {
 
 export default function Stats({ stats, types }: StatsProps) {
   return (
-    <div className='absolute right-[15%] text-xl'>
+    <div className='text-xl'>
       {stats.map((stat, index) => (
-        <div key={index} className='pb-3 last:pb-0 hover:scale-[1.03]'>
+        <div key={index} className='pb-3 last:pb-3 hover:scale-[1.03]'>
           <p className='pb-1'>
             {Capitalize(stat.name)}
             <span className='text-slate-500'> {stat.value}</span>
