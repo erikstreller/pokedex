@@ -13,7 +13,7 @@ export default function StatsContainer({
   return (
     <div
       className={clsx(
-        'hover:flicker absolute right-0 flex h-[380px] w-[380px] items-center rounded-lg bg-gradient-to-b p-[3px] transition duration-500',
+        'absolute right-0 flex h-[380px] w-[380px] items-center rounded-lg bg-gradient-to-b p-[3px]',
         className
       )}
       style={{
