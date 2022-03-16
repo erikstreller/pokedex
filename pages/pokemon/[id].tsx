@@ -17,6 +17,7 @@ import Navigate from '../../components/Navigate'
 import Seo from '../../components/Seo'
 import Stats from '../../components/StatsChart'
 import StatsContainer from '../../components/StatsContainer'
+import useLoaded from '../../hooks/useLoaded'
 import { getAllPokemonIds } from '../library'
 
 export async function getStaticProps({ params }) {
@@ -106,6 +107,8 @@ export default function PokemonSide({
     blurColor ? setBlurColor(false) : setBlurColor(true)
   }
 
+  const isLoaded = useLoaded()
+
   return (
     <>
       <Seo title={Capitalize(name)} />
@@ -122,14 +125,21 @@ export default function PokemonSide({
         <Navigate id={id} />
         <BackButton text='library' link='/library' />
         <EntryNumber id={id} />
-        <div className='relative z-10 mx-auto flex h-full w-[90%] max-w-[1100px] flex-col items-start justify-center text-white'>
-          <p className='text-5xl font-bold'>{Capitalize(name)}</p>
-          <div className='my-4 flex flex-wrap gap-3'>
+        <div
+          className={clsx(
+            'relative z-10 mx-auto flex h-full w-[90%] max-w-[1100px] flex-col items-start justify-center text-white',
+            isLoaded && 'fade-in-start'
+          )}
+        >
+          <p className='text-5xl font-bold' data-fade='1'>
+            {Capitalize(name)}
+          </p>
+          <div className='my-4 flex flex-wrap gap-3' data-fade='2'>
             {types.map((type, index) => (
               <Label key={index} type={type} />
             ))}
           </div>
-          <div className='mt-4 mb-10 max-w-[534px] text-2xl'>
+          <div className='mt-4 mb-10 max-w-[534px] text-2xl' data-fade='3'>
             {modifiedDescription}
           </div>
           <StatsButton
@@ -145,7 +155,7 @@ export default function PokemonSide({
             }
           />
           {!showStats && (
-            <div className='absolute -right-[5%] bottom-[5%]'>
+            <div className='absolute -right-[5%] bottom-[5%]' data-fade='5'>
               <Image src={image} width={500} height={500} alt={name} />
             </div>
           )}
