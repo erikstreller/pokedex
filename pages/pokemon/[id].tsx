@@ -5,6 +5,7 @@ import { useState } from 'react'
 import background from '../../assets/landing-branden-skeli.jpg'
 import BackButton from '../../components/buttons/BackButton'
 import StatsButton from '../../components/buttons/StatsButton'
+import EntryNumber from '../../components/EntryNumber'
 import Capitalize from '../../components/functions/Capitalize'
 import gradientType from '../../components/functions/gradientType'
 import {
@@ -120,6 +121,7 @@ export default function PokemonSide({
         />
         <Navigate id={id} />
         <BackButton text='library' link='/library' />
+        <EntryNumber id={id} />
         <div className='relative z-10 mx-auto flex h-full w-[90%] max-w-[1100px] flex-col items-start justify-center text-white'>
           <p className='text-5xl font-bold'>{Capitalize(name)}</p>
           <div className='my-4 flex flex-wrap gap-3'>
@@ -161,7 +163,7 @@ export default function PokemonSide({
         </div>
         <div
           className={clsx(
-            'absolute bottom-0 h-screen w-full animate-flicker bg-gradient-to-b',
+            'absolute bottom-0 h-screen w-full bg-gradient-to-b',
             twFromTypeColors(gradientType(types, types[0])),
             twToTypeColors(gradientType(types, types[1]))
           )}
