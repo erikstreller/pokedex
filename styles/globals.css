@@ -23,6 +23,10 @@ a {
   .layout {
     @apply z-10 mx-auto w-[90%] max-w-[1066px] text-light;
   }
+  .detail-page-btn {
+    @apply fixed top-6 z-20 flex justify-center rounded-md border-2 border-zinc-800 bg-dark-theme py-1 px-3 align-middle text-light 
+    transition duration-100 hover:scale-[1.03] hover:border-all active:scale-[0.97];
+  }
 }
 
 [data-fade] {

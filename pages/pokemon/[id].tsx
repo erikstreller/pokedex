@@ -1,7 +1,9 @@
 import clsx from 'clsx'
 import Image from 'next/image'
+import Link from 'next/link'
+import { useRouter } from 'next/router'
 import { GetStaticPaths } from 'next/types'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import background from '../../assets/landing-branden-skeli.jpg'
 import BackButton from '../../components/buttons/BackButton'
 import StatsButton from '../../components/buttons/StatsButton'
@@ -13,7 +15,6 @@ import {
   twToTypeColors
 } from '../../components/functions/twGradientTypeColors'
 import Label from '../../components/Label'
-import Navigate from '../../components/Navigate'
 import Seo from '../../components/Seo'
 import Stats from '../../components/StatsChart'
 import StatsContainer from '../../components/StatsContainer'
@@ -99,6 +100,9 @@ export default function PokemonSide({
     .replace('WEEZING', 'Weezing')
     .replace('STONEs', 'Stones')
 
+  const isLoaded = useLoaded()
+  const router = useRouter()
+
   const [showStats, setShowStats] = useState<boolean>(false)
   const [blurColor, setBlurColor] = useState<boolean>(true)
 
@@ -107,7 +111,29 @@ export default function PokemonSide({
     blurColor ? setBlurColor(false) : setBlurColor(true)
   }
 
-  const isLoaded = useLoaded()
+  const [next, setNext] = useState<boolean>(false)
+  const [prev, setPrev] = useState<boolean>(false)
+
+  useEffect(() => {
+    setNext(false)
+    setPrev(false)
+  }, [id])
+
+  const handleNext = (e) => {
+    e.preventDefault()
+    setNext(true)
+    setTimeout(() => {
+      router.push(`${id + 1}`)
+    }, 500)
+  }
+
+  const handlePrev = (e) => {
+    e.preventDefault()
+    setPrev(true)
+    setTimeout(() => {
+      router.push(`${id - 1}`)
+    }, 500)
+  }
 
   return (
     <>
@@ -122,9 +148,25 @@ export default function PokemonSide({
           objectFit='cover'
           objectPosition='center'
         />
-        <Navigate id={id} />
         <BackButton text='library' link='/library' />
         <EntryNumber id={id} />
+        {isLoaded && (
+          <>
+            <Link href={`${id + 1}`}>
+              <a className='detail-page-btn left-1/2 ml-4' onClick={handleNext}>
+                {id + 1} &rarr;
+              </a>
+            </Link>
+            <Link href={`${id - 1}`}>
+              <a
+                className='detail-page-btn right-1/2 mr-4'
+                onClick={handlePrev}
+              >
+                &larr; {id - 1}
+              </a>
+            </Link>
+          </>
+        )}
         <div
           className={clsx(
             'relative z-10 mx-auto flex h-full w-[90%] max-w-[1100px] flex-col items-start justify-center text-white',
@@ -155,8 +197,23 @@ export default function PokemonSide({
             }
           />
           {!showStats && (
-            <div className='absolute -right-[5%] bottom-[5%]' data-fade='5'>
-              <Image src={image} width={500} height={500} alt={name} />
+            <div
+              className={clsx('absolute -right-[5%] bottom-[5%]')}
+              data-fade='5'
+            >
+              {/* FIXME: on low-end connection the new images pops up late
+              and the old image stays to long */}
+              <Image
+                src={image}
+                width={500}
+                height={500}
+                alt={name}
+                className={clsx(
+                  'translate-x-0 opacity-100 transition duration-500',
+                  next ? 'translate-x-10 opacity-0' : '',
+                  prev ? '-translate-x-10 opacity-0' : ''
+                )}
+              />
             </div>
           )}
           {showStats && (
