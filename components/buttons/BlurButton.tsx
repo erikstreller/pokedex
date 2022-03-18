@@ -1,6 +1,6 @@
 import clsx from 'clsx'
 import Link from 'next/link'
-import Capitalize from '../functions/Capitalize'
+import capitalize from '../../lib/capitalize'
 import UnstyledBlurButton from './UnstyledBlurButton'
 
 type BlurButtonProps = {
@@ -23,7 +23,7 @@ export default function BlurButton({
             'transition duration-100 hover:scale-[1.03] active:scale-[0.97]'
           )}
         >
-          {Capitalize(text)}
+          {capitalize(text)}
         </a>
       </Link>
     </UnstyledBlurButton>

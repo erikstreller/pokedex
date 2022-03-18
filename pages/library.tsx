@@ -5,14 +5,14 @@ import { useEffect, useState } from 'react'
 import Accent from '../components/Accent'
 import BackButton from '../components/buttons/BackButton'
 import Card from '../components/Card'
-import typeColors from '../components/constants/colors'
 import Divider from '../components/Divider'
 import Footer from '../components/Footer'
-import Label from '../components/Label'
+import Label from '../components/labels/Label'
 import Search from '../components/Search'
 import Seo from '../components/Seo'
 import { PreloadProvider } from '../context/PreloadContext'
 import useLoaded from '../hooks/useLoaded'
+import typeColors from '../lib/colors'
 
 export default function Library({ pokemons }) {
   const [filteredType, setfilteredType] = useState([...pokemons])

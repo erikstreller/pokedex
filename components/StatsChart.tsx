@@ -1,10 +1,7 @@
 import clsx from 'clsx'
-import Capitalize from './functions/Capitalize'
-import gradientType from './functions/gradientType'
-import {
-  twFromTypeColors,
-  twToTypeColors
-} from './functions/twGradientTypeColors'
+import capitalize from '../lib/capitalize'
+import gradientType from '../lib/gradientType'
+import { twFromTypeColors, twToTypeColors } from '../lib/twGradientTypeColors'
 
 type StatsProps = {
   stats: [{ name: string; value: string }]
@@ -17,7 +14,7 @@ export default function Stats({ stats, types }: StatsProps) {
       {stats.map((stat, index) => (
         <div key={index} className='pb-3 last:pb-3 hover:scale-[1.03]'>
           <p className='pb-1'>
-            {Capitalize(stat.name)}
+            {capitalize(stat.name)}
             <span className='text-slate-500'> {stat.value}</span>
           </p>
           <div className='h-2 w-[225px]'>

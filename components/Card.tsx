@@ -2,12 +2,9 @@ import clsx from 'clsx'
 import { motion } from 'framer-motion'
 import Image from 'next/image'
 import Link from 'next/link'
-import Capitalize from './functions/Capitalize'
-import gradientType from './functions/gradientType'
-import {
-  twHoverFromType,
-  twHoverToType
-} from './functions/twGradientTypeColors'
+import capitalize from '../lib/capitalize'
+import gradientType from '../lib/gradientType'
+import { twHoverFromType, twHoverToType } from '../lib/twGradientTypeColors'
 
 type CardProps = {
   image: string
@@ -45,7 +42,7 @@ export default function Card({ image, name, id, types }: CardProps) {
           </div>
           <div className='absolute bottom-[2px] flex w-[190px] justify-between rounded-b-[14px] px-6 py-2 text-lg font-semibold backdrop-blur-md'>
             <div className='text-zinc-400'>#{id}</div>
-            <div>{Capitalize(name)}</div>
+            <div>{capitalize(name)}</div>
           </div>
         </a>
       </Link>

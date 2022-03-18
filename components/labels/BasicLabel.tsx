@@ -1,6 +1,6 @@
 import clsx from 'clsx'
-import Capitalize from './functions/Capitalize'
-import twBorderTypeColors from './functions/twBorderTypeColors'
+import capitalize from '../../lib/capitalize'
+import twBorderTypeColors from '../../lib/twBorderTypeColors'
 
 export type BasicLabelProps = {
   type: string
@@ -22,7 +22,7 @@ export default function BasicLabel({
       )}
       {...rest}
     >
-      {Capitalize(type)}
+      {capitalize(type)}
     </div>
   )
 }

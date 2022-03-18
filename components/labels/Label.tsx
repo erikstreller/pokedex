@@ -1,8 +1,8 @@
 import clsx from 'clsx'
 import { Dispatch, SetStateAction } from 'react'
+import twBgHoverTypeColors from '../../lib/twBgHoverTypeColors'
+import twBgTypeColors from '../../lib/twBgTypeColors'
 import BasicLabel, { BasicLabelProps } from './BasicLabel'
-import twBgHoverTypeColors from './functions/twBgHoverTypeColors'
-import twBgTypeColors from './functions/twBgTypeColors'
 
 export type LabelProps = {
   setActiveType?: Dispatch<SetStateAction<string>>

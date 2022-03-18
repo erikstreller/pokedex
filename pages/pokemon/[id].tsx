@@ -8,17 +8,17 @@ import background from '../../assets/landing-branden-skeli.jpg'
 import BackButton from '../../components/buttons/BackButton'
 import StatsButton from '../../components/buttons/StatsButton'
 import EntryNumber from '../../components/EntryNumber'
-import Capitalize from '../../components/functions/Capitalize'
-import gradientType from '../../components/functions/gradientType'
-import {
-  twFromTypeColors,
-  twToTypeColors
-} from '../../components/functions/twGradientTypeColors'
-import Label from '../../components/Label'
+import Label from '../../components/labels/Label'
 import Seo from '../../components/Seo'
 import Stats from '../../components/StatsChart'
 import StatsContainer from '../../components/StatsContainer'
 import useLoaded from '../../hooks/useLoaded'
+import capitalize from '../../lib/capitalize'
+import gradientType from '../../lib/gradientType'
+import {
+  twFromTypeColors,
+  twToTypeColors
+} from '../../lib/twGradientTypeColors'
 import { getAllPokemonIds } from '../library'
 
 export async function getStaticProps({ params }) {
@@ -137,7 +137,7 @@ export default function PokemonSide({
 
   return (
     <>
-      <Seo title={Capitalize(name)} />
+      <Seo title={capitalize(name)} />
       <main className='relative h-screen w-full bg-black'>
         <Image
           priority
@@ -174,7 +174,7 @@ export default function PokemonSide({
           )}
         >
           <p className='text-5xl font-bold' data-fade='1'>
-            {Capitalize(name)}
+            {capitalize(name)}
           </p>
           <div className='my-4 flex flex-wrap gap-3' data-fade='2'>
             {types.map((type, index) => (

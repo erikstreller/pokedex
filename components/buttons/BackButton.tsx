@@ -1,6 +1,6 @@
 import clsx from 'clsx'
 import Link from 'next/link'
-import Capitalize from '../functions/Capitalize'
+import capitalize from '../../lib/capitalize'
 
 type BackButtonProps = {
   text: string
@@ -17,7 +17,7 @@ export default function BackButton({ text, link }: BackButtonProps) {
           'transition duration-100 hover:scale-[1.03] hover:border-all focus:border-all active:scale-[0.97]'
         )}
       >
-        {Capitalize(text)}
+        {capitalize(text)}
       </a>
     </Link>
   )

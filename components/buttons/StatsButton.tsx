@@ -1,5 +1,5 @@
 import clsx from 'clsx'
-import Capitalize from '../functions/Capitalize'
+import capitalize from '../../lib/capitalize'
 import UnstyledBlurButton from './UnstyledBlurButton'
 
 type StatsButtonProps = {
@@ -21,7 +21,7 @@ export default function StatsButton({
         )}
         {...rest}
       >
-        {Capitalize(text)}
+        {capitalize(text)}
       </button>
     </UnstyledBlurButton>
   )
