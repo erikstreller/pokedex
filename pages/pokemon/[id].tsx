@@ -9,8 +9,7 @@ import StatsButton from '../../components/buttons/StatsButton'
 import EntryNumber from '../../components/EntryNumber'
 import Label from '../../components/labels/Label'
 import Seo from '../../components/Seo'
-import Stats from '../../components/StatsChart'
-import StatsContainer from '../../components/StatsContainer'
+import { StatCircle } from '../../components/StatCircle'
 import useLoaded from '../../hooks/useLoaded'
 import capitalize from '../../lib/capitalize'
 import gradientType from '../../lib/gradientType'
@@ -163,21 +162,25 @@ export default function PokemonSide({
                 : 'from-slate-700 to-slate-700'
             }
           />
-          {/* {!showStats && ( */}
-          <div className='absolute -right-[5%] bottom-[5%]' data-fade='5'>
-            <Image src={image} width={500} height={500} alt={name} />
-          </div>
-          {/* )} */}
+          {!showStats && (
+            <div className='absolute -right-[5%] bottom-[5%]' data-fade='5'>
+              <Image src={image} width={500} height={500} alt={name} />
+            </div>
+          )}
           {showStats && (
-            <StatsContainer
-              className={clsx(
-                'from-slate-700 to-slate-700'
-                // twFromTypeColors(gradientType(types, types[0])),
-                // twToTypeColors(gradientType(types, types[1]))
-              )}
-            >
-              <Stats stats={stats} types={types} />
-            </StatsContainer>
+            <div className='absolute right-0 grid grid-cols-3 gap-6'>
+              {stats.map((stat, index) => (
+                <StatCircle
+                  key={index}
+                  text={stat.name}
+                  number={stat.value}
+                  className={clsx(
+                    twFromTypeColors(gradientType(types, types[0])),
+                    twToTypeColors(gradientType(types, types[1]))
+                  )}
+                />
+              ))}
+            </div>
           )}
         </div>
         <div
