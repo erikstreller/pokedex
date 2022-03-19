@@ -1,4 +1,5 @@
 import clsx from 'clsx'
+import { motion } from 'framer-motion'
 import Image from 'next/image'
 import Link from 'next/link'
 import { GetStaticPaths } from 'next/types'
@@ -111,7 +112,7 @@ export default function PokemonSide({
   return (
     <>
       <Seo title={capitalize(name)} />
-      {/* TODO: min h for desktop if stats */}
+      {/* TODO: min-h for desktop if stats */}
       <main className='h-screen w-full bg-black'>
         <Image
           priority
@@ -165,42 +166,49 @@ export default function PokemonSide({
               }
             />
           </div>
-          {/* TODO: image animation during scale to new position */}
           <div
             className={clsx(
               'flex w-1/2 flex-col items-end',
               !showStats ? 'justify-end pb-14' : 'justify-center'
             )}
           >
-            <div className='flex' data-fade='5'>
-              <Image
-                src={image}
-                width={500}
-                height={500}
-                alt={name}
-                className={clsx(
-                  'transition duration-1000',
-                  !showStats ? 'scale-100' : 'scale-[0.65]'
-                )}
-              />
+            <div data-fade='5'>
+              <motion.div layout className='flex'>
+                <Image
+                  src={image}
+                  width={500}
+                  height={500}
+                  alt={name}
+                  className={clsx(
+                    'transition duration-[400ms]',
+                    !showStats ? 'scale-100' : 'scale-[0.65]'
+                  )}
+                />
+              </motion.div>
             </div>
-            {/* TODO: stats opacity from 0 to 100 animation */}
             {showStats && (
-              <div className='-mt-10 flex w-[500px] justify-center'>
-                <div className='grid grid-cols-3 gap-8'>
-                  {stats.map((stat, index) => (
-                    <StatCircle
-                      key={index}
-                      text={stat.name}
-                      number={stat.value}
-                      className={clsx(
-                        twFromTypeColors(gradientType(types, types[0])),
-                        twToTypeColors(gradientType(types, types[1]))
-                      )}
-                    />
-                  ))}
+              <motion.div
+                layout
+                animate={{ opacity: 1 }}
+                initial={{ opacity: 0 }}
+                transition={{ duration: 0.4, delay: 0.3 }}
+              >
+                <div className='-mt-10 flex w-[500px] justify-center'>
+                  <div className='grid grid-cols-3 gap-8 transition'>
+                    {stats.map((stat, index) => (
+                      <StatCircle
+                        key={index}
+                        text={stat.name}
+                        number={stat.value}
+                        className={clsx(
+                          twFromTypeColors(gradientType(types, types[0])),
+                          twToTypeColors(gradientType(types, types[1]))
+                        )}
+                      />
+                    ))}
+                  </div>
                 </div>
-              </div>
+              </motion.div>
             )}
           </div>
         </div>
