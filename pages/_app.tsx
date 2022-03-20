@@ -1,8 +1,13 @@
 import { AppProps } from 'next/app'
+import { GlitchProvider } from '../context/GlitchContext'
 import '../styles/globals.css'
 
 function MyApp({ Component, pageProps }: AppProps) {
-  return <Component {...pageProps} />
+  return (
+    <GlitchProvider>
+      <Component {...pageProps} />
+    </GlitchProvider>
+  )
 }
 
 export default MyApp

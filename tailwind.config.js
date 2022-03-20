@@ -38,7 +38,9 @@ module.exports = {
         'dark-theme': '#050606',
         light: '#fefefe',
         link: '#58a6ff',
-        divider: '#4b5563'
+        divider: '#4b5563',
+        'psychic-flying-blend': '#D56FB8',
+        'electric-fire-blend': '#F3AC2E'
       },
       width: {
         'overlay-image': 'clamp(250px, 40vw, 500px)'

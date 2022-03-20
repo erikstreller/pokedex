@@ -1,7 +1,7 @@
 import clsx from 'clsx'
 import { AnimatePresence, motion } from 'framer-motion'
 import { GetStaticProps } from 'next'
-import { useEffect, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import Accent from '../components/Accent'
 import BackButton from '../components/buttons/BackButton'
 import Card from '../components/Card'
@@ -10,14 +10,21 @@ import Footer from '../components/Footer'
 import Label from '../components/labels/Label'
 import Search from '../components/Search'
 import Seo from '../components/Seo'
+import Tooltip from '../components/Tooltip'
+import GlitchContext from '../context/GlitchContext'
 import { PreloadProvider } from '../context/PreloadContext'
 import useLoaded from '../hooks/useLoaded'
 import typeColors from '../lib/colors'
 
 export default function Library({ pokemons }) {
+  const { readTooltip, setReadTooltip, teleportOut24, teleportOut25 } =
+    useContext(GlitchContext)
+
   const [filteredType, setfilteredType] = useState([...pokemons])
   const [activeType, setActiveType] = useState('all')
   const [activeStyle, setActiveStyle] = useState('all')
+
+  const [showMew, setShowMew] = useState<boolean>(false)
 
   const [searchValue, setSearchValue] = useState(' ')
   const [searchError, setSearchError] = useState(false)
@@ -51,6 +58,21 @@ export default function Library({ pokemons }) {
     }
   }, [searchValue])
 
+  const handleHover = () => {
+    setReadTooltip(true)
+  }
+
+  // TODO: show something for visual approval
+  const handleClick = () => {
+    setReadTooltip(true)
+  }
+
+  useEffect(() => {
+    if (teleportOut24 === true && teleportOut25 === true) {
+      setShowMew(true)
+    }
+  }, [teleportOut24, teleportOut25])
+
   const isLoaded = useLoaded()
 
   return (
@@ -74,9 +96,20 @@ export default function Library({ pokemons }) {
             </div>
             <div className='text-2xl font-semibold text-zinc-400' data-fade='3'>
               In the original games there where{' '}
-              <Accent gradient='from-psychic to-flying'>151 </Accent>
+              <Tooltip content={mewText}>
+                <span
+                  onMouseOver={handleHover}
+                  onClick={handleClick}
+                  className='cursor-pointer decoration-psychic-flying-blend hover:underline hover:underline-offset-2'
+                >
+                  <Accent gradient='from-psychic to-flying font-semibold'>
+                    151
+                  </Accent>
+                </span>
+              </Tooltip>{' '}
               Pokémon.
               {/* Mew: see notes under mew.md */}
+              {readTooltip && <div className='absolute top-0 right-0'>Mew</div>}
             </div>
             <div
               className='mt-6 flex flex-wrap items-center gap-2 pb-2 pt-4 text-lg'
@@ -150,6 +183,24 @@ export default function Library({ pokemons }) {
     </div>
   )
 }
+
+const mewText = (
+  <>
+    In the first versions{' '}
+    <Accent gradient='from-psychic to-flying font-bold'>Mew</Accent> could only
+    be catched through a glitch. The technique involves an Abra with{' '}
+    <Accent gradient='from-water-colorful to-ice font-bold'>TELEPORT</Accent>{' '}
+    and there must be two special trainers on{' '}
+    <Accent gradient='from-grass-colorful to-water-colorful font-bold'>
+      route 24
+    </Accent>{' '}
+    and{' '}
+    <Accent gradient='from-grass-colorful to-water-colorful font-bold'>
+      25
+    </Accent>{' '}
+    available for a fight.
+  </>
+)
 
 export const getStaticProps: GetStaticProps = async (context) => {
   let i = 1

@@ -2,15 +2,19 @@ import clsx from 'clsx'
 import { motion } from 'framer-motion'
 import Image from 'next/image'
 import { GetStaticPaths } from 'next/types'
-import { useState } from 'react'
+import { useContext, useState } from 'react'
 import background from '../../assets/landing-branden-skeli.jpg'
+import Accent from '../../components/Accent'
 import BackButton from '../../components/buttons/BackButton'
 import StatsButton from '../../components/buttons/StatsButton'
+import Description from '../../components/Description'
 import EntryNumber from '../../components/EntryNumber'
 import Label from '../../components/labels/Label'
 import { Navigate } from '../../components/Navigate'
 import Seo from '../../components/Seo'
 import { StatCircle } from '../../components/StatCircle'
+import Tooltip from '../../components/Tooltip'
+import GlitchContext from '../../context/GlitchContext'
 import useLoaded from '../../hooks/useLoaded'
 import capitalize from '../../lib/capitalize'
 import gradientType from '../../lib/gradientType'
@@ -75,6 +79,14 @@ export default function PokemonSide({
   stats,
   description
 }) {
+  const {
+    clickTeleport,
+    catchAbra,
+    setCatchAbra,
+    setTeleportOut24,
+    setTeleportOut25
+  } = useContext(GlitchContext)
+
   const modifiedDescription = description
     .replace('\f', ' ')
     .replace('POKéMON', 'Pokémon')
@@ -109,6 +121,23 @@ export default function PokemonSide({
     blurColor ? setBlurColor(false) : setBlurColor(true)
   }
 
+  const handleCatchAbra = () => {
+    setCatchAbra(true)
+  }
+
+  // TODO: handle fight
+  const handleFight = () => {
+    return
+  }
+  const handleTeleport = () => {
+    if (id === 24) {
+      setTeleportOut24(true)
+    }
+    if (id === 25) {
+      setTeleportOut25(true)
+    }
+  }
+
   return (
     <>
       <Seo title={capitalize(name)} />
@@ -125,6 +154,53 @@ export default function PokemonSide({
         <BackButton text='library' link='/library' />
         <EntryNumber id={id} />
         {isLoaded && <Navigate id={id} />}
+        {clickTeleport && id === 112 && (
+          <div
+            className='fixed bottom-0 right-4 z-10'
+            onClick={handleCatchAbra}
+          >
+            <Image
+              src='https://assets.pokemon.com/assets/cms2/img/pokedex/full/063.png'
+              alt='Abra'
+              width={100}
+              height={100}
+              className='cursor-pointer'
+            />
+            {catchAbra && id === 112 && (
+              <div className='fixed bottom-10 z-10 -rotate-45 pr-2 font-bold text-light'>
+                <Accent gradient='from-fighting-colorful to-fighting-colorful'>
+                  Abra catched
+                </Accent>
+              </div>
+            )}
+          </div>
+        )}
+        {catchAbra && (id === 24 || id === 25) && (
+          // TODO: if teleport out redirect to library
+          <div className='fixed bottom-4 right-4 z-20 pr-2 text-light'>
+            <p>A trainer approaches.</p>
+            <p>
+              <span
+                className='cursor-pointer decoration-psychic-flying-blend hover:underline hover:underline-offset-2'
+                onClick={handleFight}
+              >
+                <Accent gradient='from-psychic to-flying font-semibold'>
+                  Fight
+                </Accent>
+              </span>{' '}
+              or{' '}
+              <span
+                className='cursor-pointer decoration-electric-fire-blend hover:underline hover:underline-offset-2'
+                onClick={handleTeleport}
+              >
+                <Accent gradient='from-electric to-fire font-semibold'>
+                  Teleport
+                </Accent>
+              </span>{' '}
+              away?
+            </p>
+          </div>
+        )}
         <div
           className={clsx(
             'relative z-10 mx-auto flex h-full w-[90%] max-w-[1200px] text-white',
@@ -140,9 +216,7 @@ export default function PokemonSide({
                 <Label key={index} type={type} />
               ))}
             </div>
-            <div className='mt-4 mb-10 max-w-[534px] text-2xl' data-fade='3'>
-              {modifiedDescription}
-            </div>
+            <Description text={modifiedDescription} id={id} />
             <StatsButton
               text='stats'
               onClick={handleShowStats}
@@ -162,6 +236,16 @@ export default function PokemonSide({
               !showStats ? 'justify-end pb-14' : 'justify-center'
             )}
           >
+            {clickTeleport && id === 63 && (
+              <div className='absolute z-10'>
+                <Tooltip content={abraText}>
+                  <Accent gradient='from-electric to-fire font-semibold'>
+                    Abra
+                  </Accent>
+                </Tooltip>{' '}
+                used Teleport!
+              </div>
+            )}
             <div data-fade='5'>
               <motion.div layout className='-mt-10 flex'>
                 <Image
@@ -220,3 +304,5 @@ export default function PokemonSide({
     </>
   )
 }
+
+const abraText = <>Look at the first Pokémon ever drawn.</>
