@@ -1,7 +1,6 @@
 import clsx from 'clsx'
 import { motion } from 'framer-motion'
 import Image from 'next/image'
-import Link from 'next/link'
 import { GetStaticPaths } from 'next/types'
 import { useState } from 'react'
 import background from '../../assets/landing-branden-skeli.jpg'
@@ -9,6 +8,7 @@ import BackButton from '../../components/buttons/BackButton'
 import StatsButton from '../../components/buttons/StatsButton'
 import EntryNumber from '../../components/EntryNumber'
 import Label from '../../components/labels/Label'
+import { Navigate } from '../../components/Navigate'
 import Seo from '../../components/Seo'
 import { StatCircle } from '../../components/StatCircle'
 import useLoaded from '../../hooks/useLoaded'
@@ -125,16 +125,7 @@ export default function PokemonSide({
         />
         <BackButton text='library' link='/library' />
         <EntryNumber id={id} />
-        {isLoaded && (
-          <>
-            <Link href={`${id + 1}`}>
-              <a className='detail-page-btn left-1/2 ml-4'>{id + 1} &rarr;</a>
-            </Link>
-            <Link href={`${id - 1}`}>
-              <a className='detail-page-btn right-1/2 mr-4'>&larr; {id - 1}</a>
-            </Link>
-          </>
-        )}
+        {isLoaded && <Navigate id={id} />}
         <div
           className={clsx(
             'relative z-10 mx-auto flex h-full w-[90%] max-w-[1200px] text-white',
