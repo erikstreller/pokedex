@@ -112,8 +112,7 @@ export default function PokemonSide({
   return (
     <>
       <Seo title={capitalize(name)} />
-      {/* TODO: min-h for desktop if stats */}
-      <main className='h-screen w-full bg-black'>
+      <main className='h-screen w-full overflow-hidden bg-black'>
         <Image
           priority
           className='opacity-20'
@@ -164,7 +163,7 @@ export default function PokemonSide({
             )}
           >
             <div data-fade='5'>
-              <motion.div layout className='flex'>
+              <motion.div layout className='-mt-10 flex'>
                 <Image
                   src={image}
                   width={500}
