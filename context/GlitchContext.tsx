@@ -18,7 +18,7 @@ export function GlitchProvider({ children }: { children: ReactNode }) {
 
   // readTooltip
   useEffect(() => {
-    const storedValue = JSON.parse(localStorage.getItem('readTooltip') ?? '')
+    const storedValue = JSON.parse(localStorage.getItem('readTooltip'))
     if (storedValue) {
       setReadTooltip(true)
     }
@@ -30,7 +30,7 @@ export function GlitchProvider({ children }: { children: ReactNode }) {
 
   // clickTeleport
   useEffect(() => {
-    const storedValue = JSON.parse(localStorage.getItem('clickTeleport') ?? '')
+    const storedValue = JSON.parse(localStorage.getItem('clickTeleport'))
     if (storedValue) {
       setClickTeleport(true)
     }
@@ -42,7 +42,7 @@ export function GlitchProvider({ children }: { children: ReactNode }) {
 
   // catchAbra
   useEffect(() => {
-    const storedValue = JSON.parse(localStorage.getItem('catchAbra') ?? '')
+    const storedValue = JSON.parse(localStorage.getItem('catchAbra'))
     if (storedValue) {
       setCatchAbra(true)
     }
@@ -54,7 +54,7 @@ export function GlitchProvider({ children }: { children: ReactNode }) {
 
   // teleportOut24
   useEffect(() => {
-    const storedValue = JSON.parse(localStorage.getItem('teleportOut24') ?? '')
+    const storedValue = JSON.parse(localStorage.getItem('teleportOut24'))
     if (storedValue) {
       setTeleportOut24(true)
     }
@@ -66,7 +66,7 @@ export function GlitchProvider({ children }: { children: ReactNode }) {
 
   // teleportOut25
   useEffect(() => {
-    const storedValue = JSON.parse(localStorage.getItem('teleportOut25') ?? '')
+    const storedValue = JSON.parse(localStorage.getItem('teleportOut25'))
     if (storedValue) {
       setTeleportOut25(true)
     }
@@ -78,7 +78,7 @@ export function GlitchProvider({ children }: { children: ReactNode }) {
 
   // showMew
   useEffect(() => {
-    const storedValue = JSON.parse(localStorage.getItem('showMew') ?? '')
+    const storedValue = JSON.parse(localStorage.getItem('showMew'))
     if (storedValue) {
       setShowMew(true)
     }
