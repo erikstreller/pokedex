@@ -84,7 +84,8 @@ export default function PokemonSide({
     catchAbra,
     setCatchAbra,
     setTeleportOut24,
-    setTeleportOut25
+    setTeleportOut25,
+    showMew
   } = useContext(GlitchContext)
 
   const modifiedDescription = description
@@ -136,6 +137,10 @@ export default function PokemonSide({
     if (id === 25) {
       setTeleportOut25(true)
     }
+  }
+
+  const hidden = () => {
+    return !showMew && id === 151 ? 'hidden' : ''
   }
 
   return (
@@ -201,11 +206,15 @@ export default function PokemonSide({
             </p>
           </div>
         )}
+        {!showMew && id === 151 && (
+          <div className='id-layout items-center'>
+            <p className='pl-[50px] text-2xl'>
+              Mew can only be catched through a glitch.
+            </p>
+          </div>
+        )}
         <div
-          className={clsx(
-            'relative z-10 mx-auto flex h-full w-[90%] max-w-[1200px] text-white',
-            isLoaded && 'fade-in-start'
-          )}
+          className={clsx('id-layout', isLoaded && 'fade-in-start', hidden())}
         >
           <div className='flex h-full w-1/2 flex-col items-start justify-center pl-[50px]'>
             <p className='text-5xl font-bold' data-fade='1'>
