@@ -16,7 +16,7 @@ import { PreloadProvider } from '../context/PreloadContext'
 import useLoaded from '../hooks/useLoaded'
 import typeColors from '../lib/colors'
 
-export default function Library({ pokemons }) {
+export default function Pokemon({ pokemons }) {
   const { readTooltip, setReadTooltip, showMew } = useContext(GlitchContext)
 
   const [filteredType, setfilteredType] = useState([...pokemons])
@@ -72,7 +72,7 @@ export default function Library({ pokemons }) {
 
   return (
     <div className='bg-dark-theme'>
-      <Seo title='Library' />
+      <Seo title='Pokemon' />
       <BackButton text='Start' link='/' />
       <PreloadProvider>
         <main className='min-h-screen w-full bg-dark-theme'>
@@ -103,8 +103,7 @@ export default function Library({ pokemons }) {
                 </span>
               </Tooltip>{' '}
               Pokémon.
-              {/* Mew: see notes under mew.md */}
-              {readTooltip && (
+              {readTooltip && !showMew && (
                 <div className='absolute top-0 right-0'>readMew</div>
               )}
             </div>

@@ -22,7 +22,7 @@ import {
   twFromTypeColors,
   twToTypeColors
 } from '../../lib/twGradientTypeColors'
-import { getAllPokemonIds } from '../library'
+import { getAllPokemonIds } from '../pokemon'
 
 export async function getStaticProps({ params }) {
   const res = await fetch(`https://pokeapi.co/api/v2/pokemon/${params.id}`)
@@ -156,10 +156,10 @@ export default function PokemonSide({
           objectFit='cover'
           objectPosition='center'
         />
-        <BackButton text='library' link='/library' />
+        <BackButton text='library' link='/pokemon' />
         <EntryNumber id={id} />
         {isLoaded && <Navigate id={id} />}
-        {clickTeleport && id === 112 && (
+        {clickTeleport && id === 112 && !showMew && (
           <div
             className='fixed bottom-0 right-4 z-10'
             onClick={handleCatchAbra}
@@ -180,7 +180,7 @@ export default function PokemonSide({
             )}
           </div>
         )}
-        {catchAbra && (id === 24 || id === 25) && (
+        {catchAbra && (id === 24 || id === 25) && !showMew && (
           // TODO: if teleport out redirect to library
           <div className='fixed bottom-4 right-4 z-20 pr-2 text-light'>
             <p>A trainer approaches.</p>
@@ -207,8 +207,13 @@ export default function PokemonSide({
           </div>
         )}
         {!showMew && id === 151 && (
-          <div className='id-layout items-center'>
-            <p className='pl-[50px] text-2xl'>
+          <div
+            className={clsx(
+              'id-layout items-center',
+              isLoaded && 'fade-in-start'
+            )}
+          >
+            <p className='pl-[50px] text-2xl' data-fade='1'>
               Mew can only be catched through a glitch.
             </p>
           </div>
@@ -245,7 +250,7 @@ export default function PokemonSide({
               !showStats ? 'justify-end pb-14' : 'justify-center'
             )}
           >
-            {clickTeleport && id === 63 && (
+            {clickTeleport && id === 63 && !showMew && (
               <div className='absolute z-10'>
                 <Tooltip content={abraText}>
                   <Accent gradient='from-electric to-fire font-semibold'>

@@ -16,13 +16,13 @@ const DescriptionStyle = ({ children }: { children: ReactNode }) => {
 }
 
 export default function Description({ text, id }: DescriptionProps) {
-  const { readTooltip, setClickTeleport } = useContext(GlitchContext)
+  const { readTooltip, setClickTeleport, showMew } = useContext(GlitchContext)
 
   const handleTeleport = () => {
     setClickTeleport(true)
   }
 
-  if (readTooltip && id === 63) {
+  if (readTooltip && id === 63 && !showMew) {
     return (
       <DescriptionStyle>
         Using its ability to read minds, it will identify impending danger and{' '}

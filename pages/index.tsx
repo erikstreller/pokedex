@@ -107,7 +107,7 @@ export default function Home() {
             <BlurButton
               text='explore'
               className='from-fighting-colorful to-water-colorful'
-              link='/library'
+              link='/pokemon'
             />
           </div>
         </main>
