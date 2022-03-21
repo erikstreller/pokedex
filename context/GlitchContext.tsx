@@ -1,13 +1,20 @@
-import { createContext, ReactNode, useState } from 'react'
+import { createContext, ReactNode, useEffect, useState } from 'react'
 
 const GlitchContext = createContext(null)
 
 export function GlitchProvider({ children }: { children: ReactNode }) {
-  const [readTooltip, setReadTooltip] = useState<boolean>(true)
-  const [clickTeleport, setClickTeleport] = useState<boolean>(true)
-  const [catchAbra, setCatchAbra] = useState<boolean>(true)
-  const [teleportOut24, setTeleportOut24] = useState<boolean>(true)
-  const [teleportOut25, setTeleportOut25] = useState<boolean>(true)
+  const [readTooltip, setReadTooltip] = useState<boolean>(false)
+  const [clickTeleport, setClickTeleport] = useState<boolean>(false)
+  const [catchAbra, setCatchAbra] = useState<boolean>(false)
+  const [teleportOut24, setTeleportOut24] = useState<boolean>(false)
+  const [teleportOut25, setTeleportOut25] = useState<boolean>(false)
+  const [showMew, setShowMew] = useState<boolean>(false)
+
+  useEffect(() => {
+    if (teleportOut24 === true && teleportOut25 === true) {
+      setShowMew(true)
+    }
+  }, [teleportOut24, teleportOut25])
 
   return (
     <GlitchContext.Provider
@@ -21,7 +28,9 @@ export function GlitchProvider({ children }: { children: ReactNode }) {
         teleportOut24,
         setTeleportOut24,
         teleportOut25,
-        setTeleportOut25
+        setTeleportOut25,
+        showMew,
+        setShowMew
       }}
     >
       {children}

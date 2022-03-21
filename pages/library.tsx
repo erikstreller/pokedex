@@ -17,14 +17,11 @@ import useLoaded from '../hooks/useLoaded'
 import typeColors from '../lib/colors'
 
 export default function Library({ pokemons }) {
-  const { readTooltip, setReadTooltip, teleportOut24, teleportOut25 } =
-    useContext(GlitchContext)
+  const { readTooltip, setReadTooltip, showMew } = useContext(GlitchContext)
 
   const [filteredType, setfilteredType] = useState([...pokemons])
   const [activeType, setActiveType] = useState('all')
   const [activeStyle, setActiveStyle] = useState('all')
-
-  const [showMew, setShowMew] = useState<boolean>(false)
 
   const [searchValue, setSearchValue] = useState(' ')
   const [searchError, setSearchError] = useState(false)
@@ -33,6 +30,10 @@ export default function Library({ pokemons }) {
   useEffect(() => {
     setSearchValue(' ')
     setShowOutline(false)
+
+    if (!showMew) {
+      pokemons = pokemons.slice(0, 150)
+    }
 
     if (activeType === 'all') {
       setfilteredType(pokemons)
@@ -44,7 +45,7 @@ export default function Library({ pokemons }) {
     )
 
     setfilteredType(filtered)
-  }, [activeType])
+  }, [activeType, showMew])
 
   const filteredName = pokemons.filter((pokemon) =>
     pokemon.name.includes(searchValue.toLowerCase())
@@ -66,12 +67,6 @@ export default function Library({ pokemons }) {
   const handleClick = () => {
     setReadTooltip(true)
   }
-
-  useEffect(() => {
-    if (teleportOut24 === true && teleportOut25 === true) {
-      setShowMew(true)
-    }
-  }, [teleportOut24, teleportOut25])
 
   const isLoaded = useLoaded()
 
@@ -109,7 +104,9 @@ export default function Library({ pokemons }) {
               </Tooltip>{' '}
               Pokémon.
               {/* Mew: see notes under mew.md */}
-              {readTooltip && <div className='absolute top-0 right-0'>Mew</div>}
+              {readTooltip && (
+                <div className='absolute top-0 right-0'>readMew</div>
+              )}
             </div>
             <div
               className='mt-6 flex flex-wrap items-center gap-2 pb-2 pt-4 text-lg'
