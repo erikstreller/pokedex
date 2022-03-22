@@ -1,4 +1,3 @@
-import Link from 'next/link'
 import { useContext } from 'react'
 import GlitchContext from '../../context/GlitchContext'
 import Accent from '../Accent'
@@ -36,16 +35,14 @@ export default function TrainerBattle({ id }: { id: number }) {
           <Accent gradient='from-psychic to-flying font-semibold'>Fight</Accent>
         </span>{' '}
         or{' '}
-        <Link href='/pokemon'>
-          <a
-            className='cursor-pointer decoration-electric-fire-blend hover:underline hover:underline-offset-2'
-            onClick={handleTeleport}
-          >
-            <Accent gradient='from-electric to-fire font-semibold'>
-              Teleport
-            </Accent>{' '}
-          </a>
-        </Link>
+        <span
+          className='cursor-pointer decoration-electric-fire-blend hover:underline hover:underline-offset-2'
+          onClick={handleTeleport}
+        >
+          <Accent gradient='from-electric to-fire font-semibold'>
+            Teleport
+          </Accent>
+        </span>{' '}
         away?
       </p>
     </>

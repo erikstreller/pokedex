@@ -231,14 +231,14 @@ export default function PokemonSide({
             )}
           >
             {clickTeleport && id === 63 && !showMew && (
-              <div className='absolute z-10'>
+              <motion.div layout className='absolute z-10'>
                 <Tooltip content={abraText}>
                   <Accent gradient='from-electric to-fire font-semibold'>
                     Abra
                   </Accent>
                 </Tooltip>{' '}
                 used Teleport!
-              </div>
+              </motion.div>
             )}
             <div data-fade='5'>
               <motion.div layout className='-mt-10 flex'>
@@ -249,7 +249,8 @@ export default function PokemonSide({
                   alt={name}
                   className={clsx(
                     'transition duration-[400ms]',
-                    !showStats ? 'scale-100' : 'scale-[0.65]'
+                    !showStats ? 'scale-100' : 'scale-[0.65]',
+                    clickTeleport && id === 63 ? 'invert' : ''
                   )}
                 />
               </motion.div>

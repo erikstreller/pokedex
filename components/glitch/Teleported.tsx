@@ -5,15 +5,7 @@ export default function Teleported() {
   return (
     <p>
       You{' '}
-      <Tooltip
-        content={
-          <>
-            Go and catch all{' '}
-            <Accent gradient='from-electric to-fire font-semibold'>151</Accent>{' '}
-            Pokémon.
-          </>
-        }
-      >
+      <Tooltip content={catchAll}>
         <Accent gradient='from-electric to-fire font-semibold'>
           teleported
         </Accent>
@@ -22,3 +14,10 @@ export default function Teleported() {
     </p>
   )
 }
+
+const catchAll = (
+  <>
+    Go and catch all{' '}
+    <Accent gradient='from-electric to-fire font-semibold'>151</Accent> Pokémon.
+  </>
+)

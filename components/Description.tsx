@@ -30,7 +30,9 @@ export default function Description({ text, id }: DescriptionProps) {
           className='cursor-pointer decoration-electric-fire-blend hover:underline hover:underline-offset-2'
           onClick={handleTeleport}
         >
-          <Accent gradient='from-electric to-fire font-bold'>TELEPORT</Accent>
+          <Accent gradient='from-electric to-fire font-semibold'>
+            TELEPORT
+          </Accent>
         </span>{' '}
         to safety.
       </DescriptionStyle>
