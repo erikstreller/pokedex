@@ -183,15 +183,17 @@ export default function Pokemon({ pokemons }) {
 const mewText = (
   <>
     In the first versions{' '}
-    <Accent gradient='from-psychic to-flying font-bold'>Mew</Accent> could only
-    be catched through a glitch. The technique involves an Abra with{' '}
-    <Accent gradient='from-water-colorful to-ice font-bold'>TELEPORT</Accent>{' '}
+    <Accent gradient='from-psychic to-flying font-semibold'>Mew</Accent> could
+    only be catched through a glitch. The technique involves an Abra with{' '}
+    <Accent gradient='from-water-colorful to-ice font-semibold'>
+      TELEPORT
+    </Accent>{' '}
     and there must be two special trainers on{' '}
-    <Accent gradient='from-grass-colorful to-water-colorful font-bold'>
+    <Accent gradient='from-grass-colorful to-water-colorful font-semibold'>
       route 24
     </Accent>{' '}
     and{' '}
-    <Accent gradient='from-grass-colorful to-water-colorful font-bold'>
+    <Accent gradient='from-grass-colorful to-water-colorful font-semibold'>
       25
     </Accent>{' '}
     available for a fight.

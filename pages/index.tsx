@@ -119,7 +119,7 @@ export default function Home() {
 const typesText = (
   <>
     17 of the 18{' '}
-    <Accent gradient='from-electric to-fire font-bold'>types</Accent> can be
+    <Accent gradient='from-electric to-fire font-semibold'>types</Accent> can be
     found in the first 151 Pokémon.
   </>
 )
@@ -127,7 +127,7 @@ const typesText = (
 const statsText = (
   <>
     Each Pokémon has 6{' '}
-    <Accent gradient='from-psychic to-flying font-bold'>stats</Accent>: hp,
+    <Accent gradient='from-psychic to-flying font-semibold'>stats</Accent>: hp,
     attack, defense, speed, special-attack and special-defense.
   </>
 )
@@ -135,7 +135,7 @@ const statsText = (
 const factsText = (
   <>
     To save memory the original games had only 38 base{' '}
-    <Accent gradient='from-water-colorful to-ice font-bold'>cries</Accent>{' '}
+    <Accent gradient='from-water-colorful to-ice font-semibold'>cries</Accent>{' '}
     Pokémon could make.
   </>
 )
