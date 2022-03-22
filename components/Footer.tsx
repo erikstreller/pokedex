@@ -1,8 +1,16 @@
+import { useRouter } from 'next/router'
 import Accent from './Accent'
 import Divider from './Divider'
 import Tooltip from './Tooltip'
 
 export default function Footer() {
+  const router = useRouter()
+
+  const handleClear = () => {
+    localStorage.clear()
+    router.reload()
+  }
+
   return (
     <footer className='layout'>
       <Divider />
@@ -18,10 +26,9 @@ export default function Footer() {
             Source Code
           </a>
         </span>
-        <a
-          href='/'
+        <span
           className='cursor-pointer hover:underline hover:underline-offset-2'
-          onClick={() => localStorage.clear()}
+          onClick={handleClear}
         >
           <Tooltip
             content={<>Click to start a new game and catch Mew again.</>}
@@ -30,7 +37,7 @@ export default function Footer() {
               Clear
             </Accent>
           </Tooltip>
-        </a>
+        </span>
       </div>
     </footer>
   )
