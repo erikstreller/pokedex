@@ -8,10 +8,17 @@ export function GlitchProvider({ children }: { children: ReactNode }) {
   const [catchAbra, setCatchAbra] = useState<boolean>(false)
   const [teleportOut24, setTeleportOut24] = useState<boolean>(false)
   const [teleportOut25, setTeleportOut25] = useState<boolean>(false)
+  const [fight24, setFight24] = useState<boolean>(false)
+  const [fight25, setFight25] = useState<boolean>(false)
   const [showMew, setShowMew] = useState<boolean>(false)
 
   useEffect(() => {
-    if (teleportOut24 === true && teleportOut25 === true) {
+    if (
+      teleportOut24 === true &&
+      teleportOut25 === true &&
+      fight24 === false &&
+      fight25 === false
+    ) {
       setShowMew(true)
     }
   }, [teleportOut24, teleportOut25])
@@ -76,6 +83,30 @@ export function GlitchProvider({ children }: { children: ReactNode }) {
     localStorage.setItem('teleportOut25', JSON.stringify(teleportOut25))
   }, [teleportOut25])
 
+  // fight24
+  useEffect(() => {
+    const storedValue = JSON.parse(localStorage.getItem('fight24'))
+    if (storedValue) {
+      setFight24(true)
+    }
+  }, [])
+
+  useEffect(() => {
+    localStorage.setItem('fight24', JSON.stringify(fight24))
+  }, [fight24])
+
+  // fight25
+  useEffect(() => {
+    const storedValue = JSON.parse(localStorage.getItem('fight25'))
+    if (storedValue) {
+      setFight25(true)
+    }
+  }, [])
+
+  useEffect(() => {
+    localStorage.setItem('fight25', JSON.stringify(fight25))
+  }, [fight25])
+
   // showMew
   useEffect(() => {
     const storedValue = JSON.parse(localStorage.getItem('showMew'))
@@ -101,6 +132,10 @@ export function GlitchProvider({ children }: { children: ReactNode }) {
         setTeleportOut24,
         teleportOut25,
         setTeleportOut25,
+        fight24,
+        setFight24,
+        fight25,
+        setFight25,
         showMew,
         setShowMew
       }}

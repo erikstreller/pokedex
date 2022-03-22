@@ -9,6 +9,9 @@ import BackButton from '../../components/buttons/BackButton'
 import StatsButton from '../../components/buttons/StatsButton'
 import Description from '../../components/Description'
 import EntryNumber from '../../components/EntryNumber'
+import Fought from '../../components/glitch/Fought'
+import Teleported from '../../components/glitch/Teleported'
+import TrainerBattle from '../../components/glitch/TrainerBattle'
 import Label from '../../components/labels/Label'
 import { Navigate } from '../../components/Navigate'
 import Seo from '../../components/Seo'
@@ -83,8 +86,10 @@ export default function PokemonSide({
     clickTeleport,
     catchAbra,
     setCatchAbra,
-    setTeleportOut24,
-    setTeleportOut25,
+    teleportOut24,
+    teleportOut25,
+    fight24,
+    fight25,
     showMew
   } = useContext(GlitchContext)
 
@@ -124,19 +129,6 @@ export default function PokemonSide({
 
   const handleCatchAbra = () => {
     setCatchAbra(true)
-  }
-
-  // TODO: handle fight
-  const handleFight = () => {
-    return
-  }
-  const handleTeleport = () => {
-    if (id === 24) {
-      setTeleportOut24(true)
-    }
-    if (id === 25) {
-      setTeleportOut25(true)
-    }
   }
 
   const hidden = () => {
@@ -181,29 +173,17 @@ export default function PokemonSide({
           </div>
         )}
         {catchAbra && (id === 24 || id === 25) && !showMew && (
-          // TODO: if teleport out redirect to library
           <div className='fixed bottom-4 right-4 z-20 pr-2 text-light'>
-            <p>A trainer approaches.</p>
-            <p>
-              <span
-                className='cursor-pointer decoration-psychic-flying-blend hover:underline hover:underline-offset-2'
-                onClick={handleFight}
-              >
-                <Accent gradient='from-psychic to-flying font-semibold'>
-                  Fight
-                </Accent>
-              </span>{' '}
-              or{' '}
-              <span
-                className='cursor-pointer decoration-electric-fire-blend hover:underline hover:underline-offset-2'
-                onClick={handleTeleport}
-              >
-                <Accent gradient='from-electric to-fire font-semibold'>
-                  Teleport
-                </Accent>
-              </span>{' '}
-              away?
-            </p>
+            {!fight24 && !teleportOut24 && id === 24 && (
+              <TrainerBattle id={id} />
+            )}
+            {!fight25 && !teleportOut25 && id === 25 && (
+              <TrainerBattle id={id} />
+            )}
+            {fight24 && id === 24 && <Fought id={id} />}
+            {fight25 && id === 25 && <Fought id={id} />}
+            {teleportOut24 && id === 24 && <Teleported />}
+            {teleportOut25 && id === 25 && <Teleported />}
           </div>
         )}
         {!showMew && id === 151 && (
