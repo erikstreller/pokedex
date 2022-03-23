@@ -10,10 +10,6 @@ export default function FirstHint() {
 
   const handleHover = () => {
     setReadTooltip(true)
-    setAnimation(true)
-    setTimeout(() => {
-      setAnimation(false)
-    }, 3000)
   }
 
   const handleClick = () => {
