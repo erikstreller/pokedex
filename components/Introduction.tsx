@@ -12,8 +12,12 @@ export default function Introduction() {
       and{' '}
       <Tooltip content={pikachu}>
         <Accent gradient='from-electric to-fire font-semibold'>explore</Accent>
-      </Tooltip>
-      .
+      </Tooltip>{' '}
+      the world of Generation One. Where{' '}
+      <Tooltip content={mewText}>
+        <Accent gradient='from-psychic to-flying font-semibold'>Mew</Accent>
+      </Tooltip>{' '}
+      was only a myth.
     </>
   )
 }
@@ -39,6 +43,27 @@ const pikachu = (
   </>
 )
 
+const mewText = (
+  <>
+    In the first versions{' '}
+    <Accent gradient='from-psychic to-flying font-semibold'>Mew</Accent> could
+    only be catched through a glitch. The technique involves an Abra with{' '}
+    <Accent gradient='from-water-colorful to-ice font-semibold'>
+      TELEPORT
+    </Accent>{' '}
+    and there must be two special trainers on{' '}
+    <Accent gradient='from-grass-colorful to-water-colorful font-semibold'>
+      route 24
+    </Accent>{' '}
+    and{' '}
+    <Accent gradient='from-grass-colorful to-water-colorful font-semibold'>
+      25
+    </Accent>{' '}
+    available for a fight.
+  </>
+)
+
+// might be useful later
 const accuracy = (
   <>There was a 1 in 256 chance to miss any move, even with perfect accuracy.</>
 )

@@ -6,7 +6,6 @@ import BackButton from '../components/buttons/BackButton'
 import Card from '../components/Card'
 import Divider from '../components/Divider'
 import Footer from '../components/Footer'
-import FirstHint from '../components/glitch/FirstHint'
 import Introduction from '../components/Introduction'
 import Label from '../components/labels/Label'
 import Search from '../components/Search'
@@ -77,12 +76,9 @@ export default function Pokemon({ pokemons }) {
             <div className='text-2xl font-semibold text-zinc-400' data-fade='2'>
               <Introduction />
             </div>
-            <div className='text-2xl font-semibold text-zinc-400' data-fade='3'>
-              <FirstHint />
-            </div>
             <div
               className='mt-6 flex flex-wrap items-center gap-2 pb-2 pt-4 text-lg'
-              data-fade='4'
+              data-fade='3'
             >
               <Search
                 setSearchValue={setSearchValue}
@@ -93,7 +89,7 @@ export default function Pokemon({ pokemons }) {
             </div>
             <div
               className='mt-4 mb-[39px] flex flex-wrap items-center gap-3 text-lg'
-              data-fade='5'
+              data-fade='4'
             >
               <Label
                 filter

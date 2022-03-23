@@ -3,7 +3,7 @@ import { createContext, ReactNode, useEffect, useState } from 'react'
 const GlitchContext = createContext(null)
 
 export function GlitchProvider({ children }: { children: ReactNode }) {
-  const [readTooltip, setReadTooltip] = useState<boolean>(false)
+  const [readTooltip, setReadTooltip] = useState<boolean>(true)
   const [clickTeleport, setClickTeleport] = useState<boolean>(false)
   const [catchAbra, setCatchAbra] = useState<boolean>(false)
   const [teleportOut24, setTeleportOut24] = useState<boolean>(false)

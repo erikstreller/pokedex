@@ -300,4 +300,4 @@ export default function PokemonSide({
   )
 }
 
-const abraText = <>Look at the first Pokémon ever drawn.</>
+const abraText = <>Look at the first Pokémon ever designed.</>
