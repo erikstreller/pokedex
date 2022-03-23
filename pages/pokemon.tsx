@@ -2,12 +2,12 @@ import clsx from 'clsx'
 import { AnimatePresence, motion } from 'framer-motion'
 import { GetStaticProps } from 'next'
 import { useContext, useEffect, useState } from 'react'
-import Accent from '../components/Accent'
 import BackButton from '../components/buttons/BackButton'
 import Card from '../components/Card'
 import Divider from '../components/Divider'
 import Footer from '../components/Footer'
 import FirstHint from '../components/glitch/FirstHint'
+import Introduction from '../components/Introduction'
 import Label from '../components/labels/Label'
 import Search from '../components/Search'
 import Seo from '../components/Seo'
@@ -75,10 +75,7 @@ export default function Pokemon({ pokemons }) {
               Pokédex
             </div>
             <div className='text-2xl font-semibold text-zinc-400' data-fade='2'>
-              <Accent gradient='from-grass-colorful to-water-colorful'>
-                Hover{' '}
-              </Accent>
-              and <Accent gradient='from-electric to-fire'>explore</Accent>.
+              <Introduction />
             </div>
             <div className='text-2xl font-semibold text-zinc-400' data-fade='3'>
               <FirstHint />
