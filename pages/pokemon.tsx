@@ -7,17 +7,17 @@ import BackButton from '../components/buttons/BackButton'
 import Card from '../components/Card'
 import Divider from '../components/Divider'
 import Footer from '../components/Footer'
+import FirstHint from '../components/glitch/FirstHint'
 import Label from '../components/labels/Label'
 import Search from '../components/Search'
 import Seo from '../components/Seo'
-import Tooltip from '../components/Tooltip'
 import GlitchContext from '../context/GlitchContext'
 import { PreloadProvider } from '../context/PreloadContext'
 import useLoaded from '../hooks/useLoaded'
 import typeColors from '../lib/colors'
 
 export default function Pokemon({ pokemons }) {
-  const { readTooltip, setReadTooltip, showMew } = useContext(GlitchContext)
+  const { showMew } = useContext(GlitchContext)
 
   const [filteredType, setfilteredType] = useState([...pokemons])
   const [activeType, setActiveType] = useState('all')
@@ -59,15 +59,6 @@ export default function Pokemon({ pokemons }) {
     }
   }, [searchValue])
 
-  const handleHover = () => {
-    setReadTooltip(true)
-  }
-
-  // TODO: show something for visual approval
-  const handleClick = () => {
-    setReadTooltip(true)
-  }
-
   const isLoaded = useLoaded()
 
   return (
@@ -90,22 +81,7 @@ export default function Pokemon({ pokemons }) {
               and <Accent gradient='from-electric to-fire'>explore</Accent>.
             </div>
             <div className='text-2xl font-semibold text-zinc-400' data-fade='3'>
-              In the original games there where{' '}
-              <Tooltip content={mewText}>
-                <span
-                  onMouseOver={handleHover}
-                  onClick={handleClick}
-                  className='cursor-pointer decoration-psychic-flying-blend hover:underline hover:underline-offset-2'
-                >
-                  <Accent gradient='from-psychic to-flying font-semibold'>
-                    151
-                  </Accent>
-                </span>
-              </Tooltip>{' '}
-              Pokémon.
-              {readTooltip && !showMew && (
-                <div className='absolute top-0 right-0'>readMew</div>
-              )}
+              <FirstHint />
             </div>
             <div
               className='mt-6 flex flex-wrap items-center gap-2 pb-2 pt-4 text-lg'
@@ -179,26 +155,6 @@ export default function Pokemon({ pokemons }) {
     </div>
   )
 }
-
-const mewText = (
-  <>
-    In the first versions{' '}
-    <Accent gradient='from-psychic to-flying font-semibold'>Mew</Accent> could
-    only be catched through a glitch. The technique involves an Abra with{' '}
-    <Accent gradient='from-water-colorful to-ice font-semibold'>
-      TELEPORT
-    </Accent>{' '}
-    and there must be two special trainers on{' '}
-    <Accent gradient='from-grass-colorful to-water-colorful font-semibold'>
-      route 24
-    </Accent>{' '}
-    and{' '}
-    <Accent gradient='from-grass-colorful to-water-colorful font-semibold'>
-      25
-    </Accent>{' '}
-    available for a fight.
-  </>
-)
 
 export const getStaticProps: GetStaticProps = async (context) => {
   let i = 1
