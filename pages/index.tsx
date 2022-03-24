@@ -52,10 +52,10 @@ export default function Home() {
               isLoaded && 'fade-in-start'
             )}
           >
-            <div className='mb-8 text-7xl font-bold' data-fade='1'>
+            <div className='mb-8 text-7xl font-bold md:text-5xl' data-fade='1'>
               Pokédex
             </div>
-            <p className='mb-8 max-w-2xl text-3xl' data-fade='2'>
+            <p className='mb-8 max-w-2xl text-3xl md:text-2xl' data-fade='2'>
               Discover{' '}
               <Tooltip content={typesText}>
                 <Accent gradient='from-electric to-fire'>types</Accent>
@@ -71,7 +71,7 @@ export default function Home() {
               of your favorite Pokémon.
             </p>
             <div>
-              <p className='mb-16 max-w-2xl text-3xl' data-fade='3'>
+              <p className='mb-16 max-w-2xl text-3xl md:text-2xl' data-fade='3'>
                 Did you know that the first Pokémon ever designed was{' '}
                 <Link href='/pokemon/112'>
                   <a

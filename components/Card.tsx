@@ -24,7 +24,7 @@ export default function Card({ image, name, id, types }: CardProps) {
       <Link href={`/pokemon/${id.toString()}`}>
         <a
           className={clsx(
-            'relative flex h-[194px] w-[194px] items-center justify-center text-left',
+            'relative flex h-[194px] w-[194px] items-center justify-center text-left md:h-[144px] md:w-[144px]',
             'rounded-2xl bg-gradient-to-r from-zinc-800 to-zinc-800 p-[2px]',
             'transition duration-200 hover:scale-[1.02] hover:bg-opacity-75',
             twHoverFromType(gradientType(types, types[0])),
@@ -40,8 +40,8 @@ export default function Card({ image, name, id, types }: CardProps) {
               className='transition duration-200 hover:scale-[1.05]'
             />
           </div>
-          <div className='absolute bottom-[2px] flex w-[190px] justify-between rounded-b-[14px] px-6 py-2 text-lg font-semibold backdrop-blur-md'>
-            <div className='text-zinc-400'>#{id}</div>
+          <div className='absolute bottom-[2px] flex w-[190px] justify-between rounded-b-[14px] px-6 py-2 text-lg font-semibold backdrop-blur-md md:w-[140px]'>
+            <div className='text-zinc-400 md:hidden'>#{id}</div>
             <div>{capitalize(name)}</div>
           </div>
         </a>
