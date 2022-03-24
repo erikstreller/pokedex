@@ -1,5 +1,6 @@
 import { useRouter } from 'next/router'
 import Accent from './Accent'
+import Credits from './Credits'
 import Divider from './Divider'
 import Tooltip from './Tooltip'
 
@@ -15,6 +16,7 @@ export default function Footer() {
     <footer className='layout'>
       <Divider />
       <div className='flex justify-between py-3'>
+        <Credits />
         <span>
           Erik Streller 2022 •{' '}
           <a
