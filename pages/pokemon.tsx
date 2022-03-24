@@ -68,15 +68,12 @@ export default function Pokemon({ pokemons }) {
         <main className='min-h-screen w-full bg-dark-theme'>
           <div className={clsx('layout', isLoaded && 'fade-in-start')}>
             <div
-              className='pt-10 pb-4 text-4xl font-bold underline decoration-dotted underline-offset-2 md:text-3xl xl:pt-28'
+              className='pt-10 pb-4 text-4xl font-bold underline decoration-dotted underline-offset-2 xl:pt-28'
               data-fade='1'
             >
               Pokédex
             </div>
-            <div
-              className='text-2xl font-semibold text-zinc-400 md:text-xl'
-              data-fade='2'
-            >
+            <div className='text-2xl font-semibold text-zinc-400' data-fade='2'>
               <Introduction />
             </div>
             <div

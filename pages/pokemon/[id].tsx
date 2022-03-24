@@ -153,7 +153,7 @@ export default function PokemonSide({
         {isLoaded && <Navigate id={id} />}
         {clickTeleport && id === 112 && !showMew && (
           <div
-            className='fixed bottom-0 right-4 z-10'
+            className='fixed bottom-0 right-4 z-20'
             onClick={handleCatchAbra}
           >
             <Image
@@ -199,10 +199,14 @@ export default function PokemonSide({
           </div>
         )}
         <div
-          className={clsx('id-layout', isLoaded && 'fade-in-start', hidden())}
+          className={clsx(
+            'id-layout lg:pt-20',
+            isLoaded && 'fade-in-start',
+            hidden()
+          )}
         >
-          <div className='flex h-full w-1/2 flex-col items-start justify-center pl-[50px]'>
-            <p className='text-5xl font-bold' data-fade='1'>
+          <div className='flex h-full w-1/2 flex-col items-start justify-center pl-[50px] md:pl-0 lg:w-full'>
+            <p className='text-5xl font-bold md:text-4xl' data-fade='1'>
               {capitalize(name)}
             </p>
             <div className='my-4 flex flex-wrap gap-3' data-fade='2'>
@@ -226,8 +230,10 @@ export default function PokemonSide({
           </div>
           <div
             className={clsx(
-              'flex w-1/2 flex-col items-end',
-              !showStats ? 'justify-end pb-14' : 'justify-center'
+              'flex w-1/2 flex-col items-end lg:-z-10 lg:w-full lg:items-start',
+              !showStats
+                ? clsx('justify-end pb-14', 'sm:-mt-14 sm:pb-20')
+                : 'justify-center'
             )}
           >
             {clickTeleport && id === 63 && !showMew && (
@@ -249,7 +255,7 @@ export default function PokemonSide({
                   alt={name}
                   className={clsx(
                     'transition duration-[400ms]',
-                    !showStats ? 'scale-100' : 'scale-[0.65]',
+                    !showStats ? 'scale-100 xl:scale-[0.85]' : 'scale-[0.65]',
                     clickTeleport && id === 63 ? 'invert' : ''
                   )}
                 />
@@ -262,7 +268,7 @@ export default function PokemonSide({
                 initial={{ opacity: 0 }}
                 transition={{ duration: 0.4, delay: 0.3 }}
               >
-                <div className='-mt-10 flex w-[500px] justify-center'>
+                <div className='-mt-10 flex w-[500px] justify-center lg:hidden'>
                   <div className='grid grid-cols-3 gap-8 transition'>
                     {stats.map((stat, index) => (
                       <StatCircle
