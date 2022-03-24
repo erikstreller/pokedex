@@ -11,6 +11,10 @@ module.exports = {
       fontFamily: {
         sans: ['Inter', ...fontFamily.sans]
       },
+      screens: {
+        xl: { max: '1280px' },
+        md: { max: '768px' }
+      },
       colors: {
         all: '#0349a8',
         normal: '#A8A77A',
