@@ -15,48 +15,53 @@ import { PreloadProvider } from '../context/PreloadContext'
 import useLoaded from '../hooks/useLoaded'
 import typeColors from '../lib/colors'
 
-export default function Pokemon({ pokemons }) {
+export default function Pokemon({ allPokemons }) {
   const { showMew } = useContext(GlitchContext)
 
-  const [filteredType, setfilteredType] = useState([...pokemons])
-  const [activeType, setActiveType] = useState('all')
-  const [activeStyle, setActiveStyle] = useState('all')
+  const [pokemons, setPokemons] = useState(inputPokemons())
+  const [activeType, setActiveType] = useState<string>('all')
 
-  const [searchValue, setSearchValue] = useState(' ')
-  const [searchError, setSearchError] = useState(false)
-  const [showOutline, setShowOutline] = useState(false)
+  const [searchValue, setSearchValue] = useState<string>(' ')
+  const [searchError, setSearchError] = useState<boolean>(false)
+  const [showOutline, setShowOutline] = useState<boolean>(false)
+
+  function inputPokemons() {
+    if (showMew) {
+      return allPokemons
+    } else {
+      return allPokemons.slice(0, 150)
+    }
+  }
 
   useEffect(() => {
-    setSearchValue(' ')
+    setPokemons(inputPokemons())
+  }, [showMew])
+
+  useEffect(() => {
     setShowOutline(false)
 
-    if (!showMew) {
-      pokemons = pokemons.slice(0, 150)
-    }
-
-    if (activeType === 'all') {
-      setfilteredType(pokemons)
-      return
-    }
-
-    const filtered = pokemons.filter((pokemon) =>
+    let filtered = inputPokemons().filter((pokemon) =>
       pokemon.types.includes(activeType)
     )
 
-    setfilteredType(filtered)
-  }, [activeType, showMew])
+    if (activeType === 'all') {
+      filtered = inputPokemons()
+    }
 
-  const filteredName = pokemons.filter((pokemon) =>
-    pokemon.name.includes(searchValue.toLowerCase())
-  )
+    if (searchValue.trim().length > 0) {
+      filtered = filtered.filter((pokemon) =>
+        pokemon.name.includes(searchValue.toLowerCase())
+      )
+    }
 
-  useEffect(() => {
-    if (searchValue !== '' && searchValue !== ' ' && !filteredName.length) {
+    if (!filtered.length) {
       setSearchError(true)
     } else {
       setSearchError(false)
     }
-  }, [searchValue])
+
+    setPokemons(filtered)
+  }, [activeType, searchValue])
 
   const isLoaded = useLoaded()
 
@@ -82,7 +87,6 @@ export default function Pokemon({ pokemons }) {
             >
               <Search
                 setSearchValue={setSearchValue}
-                setActiveStyle={setActiveStyle}
                 showOutline={showOutline}
                 setShowOutline={setShowOutline}
               />
@@ -95,8 +99,7 @@ export default function Pokemon({ pokemons }) {
                 filter
                 type='all'
                 setActiveType={setActiveType}
-                activeStyle={activeStyle}
-                setActiveStyle={setActiveStyle}
+                activeType={activeType}
               />
               <span className='pb-[2px] text-zinc-400'>or filter by type</span>
               {typeColors.map((type, index) => (
@@ -105,8 +108,7 @@ export default function Pokemon({ pokemons }) {
                   key={index}
                   type={type}
                   setActiveType={setActiveType}
-                  activeStyle={activeStyle}
-                  setActiveStyle={setActiveStyle}
+                  activeType={activeType}
                 />
               ))}
             </div>
@@ -117,27 +119,15 @@ export default function Pokemon({ pokemons }) {
             <div data-fade='6'>
               <motion.div layout className='my-10 flex flex-wrap gap-6'>
                 <AnimatePresence>
-                  {!filteredName.length &&
-                    !searchError &&
-                    filteredType.map((pokemon) => (
-                      <Card
-                        key={pokemon.id}
-                        name={pokemon.name}
-                        image={pokemon.image}
-                        id={pokemon.id}
-                        types={pokemon.types}
-                      />
-                    ))}
-                  {filteredName.length &&
-                    filteredName.map((pokemon) => (
-                      <Card
-                        key={pokemon.id}
-                        name={pokemon.name}
-                        image={pokemon.image}
-                        id={pokemon.id}
-                        types={pokemon.types}
-                      />
-                    ))}
+                  {pokemons.map((pokemon) => (
+                    <Card
+                      key={pokemon.id}
+                      name={pokemon.name}
+                      image={pokemon.image}
+                      id={pokemon.id}
+                      types={pokemon.types}
+                    />
+                  ))}
                 </AnimatePresence>
               </motion.div>
             </div>
@@ -151,7 +141,7 @@ export default function Pokemon({ pokemons }) {
 
 export const getStaticProps: GetStaticProps = async (context) => {
   let i = 1
-  const pokemons = []
+  const allPokemons = []
 
   while (i <= 151) {
     const res = await fetch(`https://pokeapi.co/api/v2/pokemon/${i}`)
@@ -167,7 +157,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
       return { name: stats.stat.name, value: stats.base_stat }
     })
 
-    pokemons.push({
+    allPokemons.push({
       name: pokemon.name,
       id: pokemon.id,
       image: `https://assets.pokemon.com/assets/cms2/img/pokedex/full/${paddedIndex}.png`,
@@ -180,7 +170,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
 
   return {
     props: {
-      pokemons
+      allPokemons
     }
   }
 }

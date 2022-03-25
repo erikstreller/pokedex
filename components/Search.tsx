@@ -3,32 +3,23 @@ import { Dispatch, SetStateAction, useRef } from 'react'
 
 export type SearchProps = {
   setSearchValue: Dispatch<SetStateAction<string>>
-  setActiveStyle: Dispatch<SetStateAction<string>>
   showOutline: boolean
   setShowOutline: Dispatch<SetStateAction<boolean>>
 }
 
 export default function Search({
   setSearchValue,
-  setActiveStyle,
   showOutline,
   setShowOutline
 }: SearchProps) {
   const inputRef = useRef(null)
 
   const handleFocus = () => {
-    inputRef.current.value = ''
     setShowOutline(true)
   }
 
   const handleChange = (e) => {
     setSearchValue(e.target.value)
-
-    if (e.target.value === '') {
-      setActiveStyle('all')
-    } else {
-      setActiveStyle('')
-    }
   }
 
   return (

@@ -7,8 +7,7 @@ import BasicLabel, { BasicLabelProps } from './BasicLabel'
 export type LabelProps = {
   setActiveType?: Dispatch<SetStateAction<string>>
   filter?: boolean
-  activeStyle?: string
-  setActiveStyle?: Dispatch<SetStateAction<string>>
+  activeType?: string
 } & BasicLabelProps &
   React.ComponentPropsWithoutRef<'div'>
 
@@ -16,8 +15,7 @@ export default function Label({
   type,
   setActiveType,
   filter,
-  activeStyle,
-  setActiveStyle,
+  activeType,
   className = ''
 }: LabelProps) {
   if (!filter) {
@@ -26,7 +24,6 @@ export default function Label({
 
   const handleClick = () => {
     setActiveType(type)
-    setActiveStyle(type)
   }
 
   return (
@@ -35,7 +32,7 @@ export default function Label({
       className={clsx(
         `cursor-pointer hover:bg-opacity-40`,
         twBgHoverTypeColors(type),
-        activeStyle === type ? clsx('bg-opacity-40', twBgTypeColors(type)) : '',
+        activeType === type ? clsx('bg-opacity-40', twBgTypeColors(type)) : '',
         className
       )}
       onClick={handleClick}
