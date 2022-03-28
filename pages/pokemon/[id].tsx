@@ -194,7 +194,13 @@ export default function PokemonSide({
             )}
           >
             <p className='pl-[50px] text-2xl' data-fade='1'>
-              Mew can only be catched through a glitch.
+              Mew can only be catched through a{' '}
+              <Tooltip content={glitchText}>
+                <Accent gradient='from-psychic to-flying font-semibold'>
+                  glitch
+                </Accent>
+              </Tooltip>
+              .
             </p>
           </div>
         )}
@@ -308,3 +314,5 @@ export default function PokemonSide({
 }
 
 const abraText = <>Look at the first Pokémon ever designed.</>
+
+const glitchText = <>Find the hints and discover the technique to catch Mew.</>
