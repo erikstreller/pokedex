@@ -17,7 +17,7 @@ export default function Introduction() {
       <Tooltip content={mewText}>
         <Accent gradient='from-psychic to-flying font-semibold'>Mew</Accent>
       </Tooltip>{' '}
-      was only a myth and could not be caught, or could it?
+      was only a myth. Can you catch all 151 Pokémon?
     </>
   )
 }
