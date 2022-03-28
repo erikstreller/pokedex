@@ -205,7 +205,7 @@ export default function PokemonSide({
             hidden()
           )}
         >
-          <div className='flex h-full w-1/2 flex-col items-start justify-center pl-[50px] md:pl-0 lg:w-full'>
+          <div className='flex h-full w-1/2 flex-col items-start justify-center pl-[50px] lg:w-full lg:pl-0'>
             <p className='text-5xl font-bold md:text-4xl' data-fade='1'>
               {capitalize(name)}
             </p>
@@ -237,13 +237,14 @@ export default function PokemonSide({
             )}
           >
             {clickTeleport && id === 63 && !showMew && (
-              <motion.div layout className='absolute z-10'>
+              <motion.div layout className='absolute z-10 lg:bottom-28'>
+                Abra used Teleport <br className='lg:hidden' /> and{' '}
                 <Tooltip content={abraText}>
                   <Accent gradient='from-electric to-fire font-semibold'>
-                    Abra
+                    got away
                   </Accent>
-                </Tooltip>{' '}
-                used Teleport!
+                </Tooltip>
+                !
               </motion.div>
             )}
             <div data-fade='5'>
