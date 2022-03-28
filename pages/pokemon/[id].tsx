@@ -166,7 +166,7 @@ export default function PokemonSide({
             {catchAbra && id === 112 && (
               <div className='fixed bottom-10 z-10 -rotate-45 pr-2 font-bold text-light'>
                 <Accent gradient='from-fighting-colorful to-fighting-colorful'>
-                  Abra catched
+                  Abra caught
                 </Accent>
               </div>
             )}
