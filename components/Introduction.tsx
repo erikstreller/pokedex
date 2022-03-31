@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import Accent from './Accent'
 import Tooltip from './Tooltip'
 
@@ -14,10 +15,12 @@ export default function Introduction() {
         <Accent gradient='from-electric to-fire font-semibold'>explore</Accent>
       </Tooltip>{' '}
       the world of Generation One. Where{' '}
-      <Tooltip content={mewText}>
-        <Accent gradient='from-psychic to-flying font-semibold'>Mew</Accent>
-      </Tooltip>{' '}
-      was only a myth. Can you catch all 151 Pokémon?
+      <Link href='/pokemon/151'>
+        <a className='decoration-psychic-flying-blend hover:underline hover:underline-offset-2'>
+          <Accent gradient='from-psychic to-flying font-semibold'>Mew</Accent>
+        </a>
+      </Link>{' '}
+      was only a myth.
     </>
   )
 }
@@ -40,26 +43,6 @@ const pikachu = (
   <>
     <Accent gradient='from-electric to-fire font-semibold'>Pikachu</Accent> was
     very rarely seen in the Virdian Forest, as it was favored by its designers.
-  </>
-)
-
-const mewText = (
-  <>
-    In the first versions{' '}
-    <Accent gradient='from-psychic to-flying font-semibold'>Mew</Accent> could
-    only be catched through a glitch. The technique involves an Abra with{' '}
-    <Accent gradient='from-water-colorful to-ice font-semibold'>
-      TELEPORT
-    </Accent>{' '}
-    and there must be two special trainers on{' '}
-    <Accent gradient='from-grass-colorful to-water-colorful font-semibold'>
-      route 24
-    </Accent>{' '}
-    and{' '}
-    <Accent gradient='from-grass-colorful to-water-colorful font-semibold'>
-      25
-    </Accent>{' '}
-    available for a fight.
   </>
 )
 

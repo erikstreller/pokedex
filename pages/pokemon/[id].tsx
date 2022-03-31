@@ -10,6 +10,7 @@ import StatsButton from '../../components/buttons/StatsButton'
 import Description from '../../components/Description'
 import EntryNumber from '../../components/EntryNumber'
 import Fought from '../../components/glitch/Fought'
+import MewIdHint from '../../components/glitch/MewIdHint'
 import Teleported from '../../components/glitch/Teleported'
 import TrainerBattle from '../../components/glitch/TrainerBattle'
 import Label from '../../components/labels/Label'
@@ -194,13 +195,7 @@ export default function PokemonSide({
             )}
           >
             <p className='pl-[50px] text-2xl' data-fade='1'>
-              Mew can only be catched through a{' '}
-              <Tooltip content={glitchText}>
-                <Accent gradient='from-psychic to-flying font-semibold'>
-                  glitch
-                </Accent>
-              </Tooltip>
-              .
+              Mew can only be catched through a <MewIdHint />.
             </p>
           </div>
         )}
@@ -314,5 +309,3 @@ export default function PokemonSide({
 }
 
 const abraText = <>Look at the first Pokémon ever designed.</>
-
-const glitchText = <>Find the hints and discover the technique to catch Mew.</>
