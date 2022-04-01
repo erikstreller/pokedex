@@ -1,6 +1,6 @@
 # Pokédex
 
-This project features the first 151 Pokémon from Generation One. You can view the project online by clicking - [Pokédex](pokedex-one-gamma.vercel.app) - or running it locally.
+This project features the first 151 Pokémon from Generation One. You can view the project online by clicking - [Pokédex](https://pokedex-one-gamma.vercel.app/) - or running it locally.
 
 ## Stack
 
